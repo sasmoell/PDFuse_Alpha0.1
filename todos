@@ -1,0 +1,34 @@
+# TODO Hier sind einige Vorschläge zur Optimierung:
+#
+# 1. Vermeide den Einsatz globaler Variablen: In deinem Code verwendest du einige globale Variablen wie `inputdir_path`
+# und `input_file`. Es ist jedoch empfehlenswert, den Einsatz globaler Variablen zu vermeiden, da dies zu unerwartetem
+# Verhalten und Komplikationen führen kann. Stattdessen kannst du Funktionen verwenden, um die erforderlichen Werte
+# zurückzugeben.
+#
+# 2. Verbessere die Lesbarkeit des Codes: Einige deiner Variablen- und Funktionsnamen könnten aussagekräftiger sein, um
+# den Code besser lesbar zu machen. Zum Beispiel könntest du `set_inputdir` in `select_input_directory` umbenennen, um
+# klarer zu machen, was die Funktion tut.
+#
+# 3. Verwende `os.path.join` für Dateipfade: Statt den Dateipfad manuell mit `/` zu verbinden, kannst du die Funktion
+# `os.path.join` verwenden, um plattformunabhängige Dateipfade zu erstellen. Zum Beispiel: `output_file = os.path.join("output", "merged.pdf")`.
+#
+# 4. Verwende `os.makedirs` mit dem Parameter `exist_ok`: Anstatt zu überprüfen, ob der Ausgabeordner existiert, kannst
+# du die Funktion `os.makedirs` mit dem Parameter `exist_ok=True` verwenden. Dadurch wird der Ordner nur dann erstellt,
+# wenn er nicht bereits vorhanden ist.
+#
+# 5. Vermeide redundante Codeblöcke: In deinem Code gibt es einige ähnliche Codeblöcke, wie z.B. die Funktionen
+# `opendir_output` und `opendir_soutput`. Du könntest diese Funktionalitäten in eine einzige Funktion extrahieren und
+# die Werte für den Ordner und die Meldung als Parameter übergeben.
+#
+# 6. Trenne den Code in Funktionen und Klassen: Um den Code besser zu strukturieren und wartbarer zu machen, könntest
+# du den Code in Funktionen und Klassen aufteilen. Jeder Funktions- oder Klassenblock könnte eine spezifische Aufgabe
+# erfüllen, wie z.B. das Zusammenführen von PDFs oder das Splitten von PDF-Dateien.
+#
+# 7. Implementiere Fehlerbehandlung: In deinem Code fehlt die Behandlung von potenziellen Fehlern, z.B. wenn der
+# Benutzer das Fenster zum Dateiauswählen schließt, ohne eine Datei auszuwählen. Es ist empfehlenswert,
+# Fehlerbehandlungsmechanismen einzuführen, um solche Szenarien abzufangen und dem Benutzer entsprechende Rückmeldungen
+# zu geben.
+#
+# 8. Verbessere die Benutzerfreundlichkeit: Du könntest die Benutzerfreundlichkeit deiner Anwendung verbessern, indem du
+# aussagekräftige Meldungen anzeigst, die den Benutzer über den Status der Operationen informieren. Du könntest auch
+# Fortschrittsanzeigen oder eine bessere Fehlerbehandlung implementieren, um dem Benutzer eine angenehmere Erfahrung zu bieten.
