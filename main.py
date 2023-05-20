@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import ttk, filedialog
 from modul1 import opendir_output, merge_pdfs, split_pdf, output_file, soutput_directory
@@ -58,9 +57,8 @@ input_label = ttk.Label(dir_frame, text="Ordner auswählen: ")
 input_label.pack(side="top", anchor="nw")
 
 file_entry = ttk.Entry(dir_frame, width=80)
-file_entry.insert(0, "Noch kein Ordner ausgewählt.")
+file_entry.insert(0, "C:/")
 file_entry.pack(side="left")
-file_entry.focus()
 
 dir_button = ttk.Button(dir_frame, text="...", command=set_inputdir)
 dir_button.pack(side="left")
@@ -93,9 +91,8 @@ splitinput_label = ttk.Label(splitframe, text="Datei auswählen: ")
 splitinput_label.pack(side="top", anchor="nw")
 
 splitfile_entry = ttk.Entry(splitframe, width=80)
-splitfile_entry.insert(0, "Noch keine Datei ausgewählt.")
+splitfile_entry.insert(0, "C:/")
 splitfile_entry.pack(side="left")
-splitfile_entry.focus()
 
 splitdir_button = ttk.Button(splitframe, text="...", command=set_inputfile)
 splitdir_button.pack(side="left")

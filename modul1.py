@@ -1,7 +1,7 @@
 import os
 import subprocess
 from PyPDF2 import PdfWriter, PdfMerger, PdfReader
-from tkinter import ttk, filedialog, messagebox
+from tkinter import messagebox
 
 inputdir_path = None
 
