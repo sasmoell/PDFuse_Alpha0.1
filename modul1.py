@@ -18,9 +18,10 @@ def opendir_output():
         except OSError:
             subprocess.Popen(['xdg-open', output_directory])
 
-# Funktion PDFs zusammenführen
-
 output_file = "output/merged.pdf"
+
+
+# Funktion PDFs zusammenführen
 
 def merge_pdfs(input_folder, output_file):
     merger = PdfMerger()
@@ -60,11 +61,11 @@ def split_pdf(input_file, soutput_directory):
     with open(input_file, 'rb') as file:
         pdf = PdfReader(file)
 
-        # Erstelle den Ausgabeverzeichnis, wenn es nicht existiert
+        # Ausgabeverzeichnis erstellen
         if not os.path.exists(soutput_directory):
             os.makedirs(soutput_directory)
 
-        # Teile die PDF-Datei in einzelne Seiten auf
+        # PDF-Datei in einzelne Seiten aufteilen
         for page_number, page in enumerate(pdf.pages):
             output_pdf = PdfWriter()
             output_pdf.add_page(page)

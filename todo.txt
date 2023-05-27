@@ -1,0 +1,21 @@
+TODO Testen und Ausnahmen behandeln
+
+Es werden noch so gut wie keine Ausnahmefälle abgefangen. Tests einsetzen?
+
+TODO Funktionen und zirkulärer Import
+
+Die Lösung zur Vermeidung des zirkulären Imports (main.py in modul1.py; modul1.py in main.py) ist nicht schön, weil
+die Funktionen aus modul1.py aktuell nochmals in einer Funktion in main.py aufgerufen werden müssen um zu funktionieren.
+
+Bisherige Ideen für Alternativen: Nicht modularisieren. Die Funktionen in main.py definieren und als lambda-Funktion in
+den Tkinter-Widgets aufrufen?
+
+Modul und Funktionen umbenennen (sprechende Bezeichnung)?
+
+TODO Tkinter GUI
+
+PDFuser optisch vom PDFSplitter trennen (nicht auf eine Seite anzeigen)
+
+Tkinter Layout-Manager umstellen von Pack auf Grid
+
+Mehr Design
