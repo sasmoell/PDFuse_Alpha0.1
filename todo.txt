@@ -1,6 +1,7 @@
 TODO Testen und Ausnahmen behandeln
 
 Es werden noch so gut wie keine Ausnahmefälle abgefangen. Tests einsetzen?
+Try & Except nutzen
 
 TODO Funktionen und zirkulärer Import
 

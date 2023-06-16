@@ -1,3 +1,4 @@
+import tkinter
 import tkinter as tk
 from tkinter import ttk, filedialog
 from modul1 import opendir_output, merge_pdfs, split_pdf, output_file, soutput_directory
@@ -39,80 +40,101 @@ def set_inputfile():
 
 root = tk.Tk()
 root.title("PDFuse Alpha 0.1.0523")
-root.minsize(800, 600)
-root.maxsize(800, 600)
+root.config(pady=20, padx=20)
+root.resizable(False, False)
 
-title_label = ttk.Label(root, text="PDFuser", font=("Arial", 22))
-title_label.pack(pady=(10, 10))
+#MENÜ
+menubar = tk.Menu(root)
+filemenu = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Datei", menu=filemenu)
 
-desc_label = ttk.Label(root,
-                       text="Bitte wählen Sie zunächst den Ordner aus, in dem sich die PDF-Dateien befinden um sie zusammenzuführen.")
-desc_label.pack(pady=(10, 10))
+filemenu.add_command(label="Ausgabeordner")
+filemenu.add_separator()
+filemenu.add_command(label="Ordner öffnen")
+filemenu.add_separator()
+filemenu.add_command(label="Beenden", command=root.destroy)
+
+root.config(menu=menubar)
+
+#PDFuser Kopfbereich
+headframe = ttk.Frame(root)
+headframe.grid(pady=(0, 15), row=0)
+
+title_label = ttk.Label(headframe, text="PDFuser", font=("Arial", 22))
+title_label.grid()
+
+desc_label = ttk.Label(headframe, text="Bitte Ordner auswählen, in dem sich die PDF-Dateien befinden.")
+desc_label.grid()
 
 # Ordnerauswahl Input Bereich
 dir_frame = ttk.Frame(root)
-dir_frame.pack(side="top")
+dir_frame.grid(row=1)
 
 input_label = ttk.Label(dir_frame, text="Ordner auswählen: ")
-input_label.pack(side="top", anchor="nw")
+input_label.grid(row=1, column=0)
 
-file_entry = ttk.Entry(dir_frame, width=80)
+file_entry = ttk.Entry(dir_frame, width=50)
 file_entry.insert(0, "C:/")
-file_entry.pack(side="left")
+file_entry.grid(row=2, column=0)
 
-dir_button = ttk.Button(dir_frame, text="...", command=set_inputdir)
-dir_button.pack(side="left")
+dir_button = ttk.Button(dir_frame, text="Durchsuchen", command=set_inputdir)
+dir_button.grid(row=2, column=1)
 
-# Button Section
-
+# Button Section (PDFuser)
 buttonframe1 = ttk.Frame(root)
-buttonframe1.pack(side="top", pady=(10, 10), )
+buttonframe1.grid(row=2, pady=15)
 
 merge_button = ttk.Button(buttonframe1, command=wmerge_pdfs)
-merge_button.pack(side="left")
-merge_button.configure(text="Dateien zusammenführen", padding=10)
+merge_button.grid(row=0, column=0)
 
+merge_button.configure(text="Fuse NOW!")
 outdir_button = ttk.Button(buttonframe1, text="Ausgabeordner öffnen", command=wopendir_output)
-outdir_button.pack(side="left")
-outdir_button.config(padding=10)
+outdir_button.grid(row=0, column=1)
+
+#PDFSplitter Kopfbereich
+headframe2 = ttk.Frame(root)
+headframe2.grid(pady=(15, 0), row=3)
+
+title_label = ttk.Label(headframe2, text="PDFSplitter", font=("Arial", 22))
+title_label.grid()
+
+splitdesc_label = ttk.Label(headframe2, text="Bitte wählen Sie zunächst die Datei aus.")
+splitdesc_label.grid()
+
 
 # SPLIT BEREICH
-
 splitframe = ttk.Frame(root)
-splitframe.pack(side="top")
-
-title_label = ttk.Label(splitframe, text="PDFSplitter", font=("Arial", 22))
-title_label.pack(pady=(10, 10))
-
-splitdesc_label = ttk.Label(splitframe, text="Bitte wählen Sie zunächst die Datei aus, um sie zu splitten.")
-splitdesc_label.pack(pady=(10, 10))
+splitframe.grid(row=4, pady=(15,0))
 
 splitinput_label = ttk.Label(splitframe, text="Datei auswählen: ")
-splitinput_label.pack(side="top", anchor="nw")
+splitinput_label.grid()
 
-splitfile_entry = ttk.Entry(splitframe, width=80)
+splitfile_entry = ttk.Entry(splitframe, width=50)
 splitfile_entry.insert(0, "C:/")
-splitfile_entry.pack(side="left")
+splitfile_entry.grid(row=0, column=0)
 
-splitdir_button = ttk.Button(splitframe, text="...", command=set_inputfile)
-splitdir_button.pack(side="left")
+splitdir_button = ttk.Button(splitframe, text="Durchsuchen", command=set_inputfile)
+splitdir_button.grid(row=0, column=1)
+
+# BUTTON SECTION
 
 buttonframe2 = ttk.Frame(root)
-buttonframe2.pack(side="top", pady=(10, 10))
+buttonframe2.grid(pady=15, row=5)
 
 split_button = ttk.Button(buttonframe2, command=wsplit_pdf)
-split_button.pack(side="left")
-split_button.configure(text="Datei splitten", padding=10)
+split_button.grid(row=0, column=0)
+split_button.configure(text="Split NOW!")
 
 splitoutdir_button = ttk.Button(buttonframe2, text="Ausgabeordner öffnen", command=wopendir_soutput)
-splitoutdir_button.pack(side="left")
-splitoutdir_button.config(padding=10)
+splitoutdir_button.grid(row=0, column=1)
+#splitoutdir_button.config()
 
-# Gruppe der Buttons unten rechts
-bright_frame = ttk.Frame(root)
-bright_frame.pack(side="bottom", anchor="se", pady=(10, 10), padx=(0, 10))
+# Beenden-Button unten rechts
 
-quit_button = ttk.Button(bright_frame, text="Beenden", command=root.destroy)
-quit_button.pack(side="left")
+style = ttk.Style()
+style.configure('redBTN.TButton', background='red', foreground='red')
+
+quit_button = ttk.Button(root, text="Beenden", command=root.destroy, style='redBTN.TButton')
+quit_button.grid(row=6, column=0, sticky=tkinter.E, pady=(15 ,0))
 
 root.mainloop()
