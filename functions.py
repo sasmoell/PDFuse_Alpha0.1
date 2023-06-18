@@ -53,12 +53,12 @@ def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
     tk.messagebox.showinfo(title="Info", message="Die Datei wurde erstellt.")
 
 
-def fuse_ausgabeordner_pruefen():
-    if not os.path.exists("output/mergeoutput"):
-        abfrage_box = tk.messagebox.askyesno(title="Frage", message="Ordner nicht vorhanden. Soll er erstellt werden?")
+def ordner_pruefen_und_erstellen(pfad):
+    if not os.path.exists(pfad):
+        abfrage_box = tk.messagebox.askyesno(title="Frage", message=f"Der Ordner {pfad} ist nicht vorhanden. Soll er erstellt werden?")
         if abfrage_box:
             try:
-                os.makedirs("output/mergeoutput")
-                gen_message_info("Info", "Der Ordner wurde erstellt.")
+                os.makedirs(pfad)
+                gen_message_info("Info", f"Der Ordner {pfad} wurde erstellt.")
             except OSError:
-                gen_error("Fehler", "Ordner konnte nicht erstellt werden.")
+                gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")

@@ -24,11 +24,11 @@ def fusenow_button():
 
 
 def fuser_ausgabeordner_oeffnen_button():
-    fuse_ausgabeordner_pruefen()
+    ordner_pruefen_und_erstellen("output")
     if os.path.exists("output"):
         ordner_oeffnen("output")
     elif not os.path.exists("output"):
-        gen_message_info("Hinweis", "Kein Ordner erstellt.")
+        gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
 # GUI mit Tkinter
