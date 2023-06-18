@@ -1,25 +1,64 @@
 import os
-from pypdf import PdfReader, PdfMerger, PdfWriter
+import subprocess
 import tkinter as tk
-from tkinter import messagebox, filedialog
+from tkinter import messagebox
+from pypdf import PdfWriter
 
-# Funktionen um PDFs zusammenzuführen
+
+# Generische Fehlermeldungen
+def gen_error(titel, message):
+    tk.messagebox.showerror(title=titel, message=message)
+
+
+def gen_message_info(titel, message):
+    tk.messagebox.showinfo(title=titel, message=message)
+
+
+def gen_yesno(titel, message):
+    tk.messagebox.askyesno(title=titel, message=message)
+
+
+# Allgemeine Funktionen
+def ordner_oeffnen(pfad):
+    try:
+        subprocess.Popen(f'explorer {pfad}')
+    except FileNotFoundError:
+        try:
+            subprocess.Popen(['open', pfad])
+        except OSError:
+            subprocess.Popen(['xdg-open', pfad])
+
+
+# Funktionen für PDFuser
 def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
     merger = PdfWriter()
 
-    pdf_dateien = [d for d in os.listdir(eingabe_ordner) if d.endswith(".pdf")] # Listet alle Dateien mit der *.pdf-Endung im Ordner eingabe_ordner auf
+    pdf_dateien = [d for d in os.listdir(eingabe_ordner) if
+                   d.endswith(".pdf")]  # Listet alle Dateien mit der *.pdf-Endung im Ordner eingabe_ordner auf
 
-    if not os.path.exists("output"): # Überprüft ob der Ordner nicht vorhanden
+    if not os.path.exists("output/mergeoutput"):  # Überprüft ob der Ordner nicht vorhanden
         try:
-            os.makedirs("output") # Versucht Ordner zu erstellen
-        except:
-            tk.messagebox.showerror(title="Fehler", message="Ordner konnte nicht erstellt werden.") # Wirft eine Fehlermeldung, wenn der Ordner nicht erstellt werden konnte
+            os.makedirs("output/mergeoutput")  # Versucht Ordner zu erstellen
+        except OSError:
+            gen_error("Fehler",
+                      "Ordner konnte nicht erstellt werden.")  # Wirft eine Fehlermeldung, wenn der Ordner nicht erstellt werden konnte
 
     for i in pdf_dateien:
-        dateipfad = eingabe_ordner + "/" + i # FOR-Schleife setzt den Dateipfad für den Merger zusammen
+        dateipfad = eingabe_ordner + "/" + i  # FOR-Schleife setzt den Dateipfad für den Merger zusammen
         merger.append(dateipfad)
 
     merger.write(ausgabe_datei)
     merger.close()
 
     tk.messagebox.showinfo(title="Info", message="Die Datei wurde erstellt.")
+
+
+def fuse_ausgabeordner_pruefen():
+    if not os.path.exists("output/mergeoutput"):
+        abfrage_box = tk.messagebox.askyesno(title="Frage", message="Ordner nicht vorhanden. Soll er erstellt werden?")
+        if abfrage_box:
+            try:
+                os.makedirs("output/mergeoutput")
+                gen_message_info("Info", "Der Ordner wurde erstellt.")
+            except OSError:
+                gen_error("Fehler", "Ordner konnte nicht erstellt werden.")

@@ -1,22 +1,21 @@
-TODO Testen und Ausnahmen behandeln
+TODO Globale Variabel eingabe_ordner
 
-Es werden noch so gut wie keine Ausnahmefälle abgefangen. Tests einsetzen?
-Try & Except nutzen
+Die Variabel eingabe_ordner muss aktuell noch innerhalb der Funktion fuser_durchsuchen_button() auf global stehen bleiben,
+da es ansonsten zu einem unerwünschten Verhalten kommt.
 
-TODO Funktionen und zirkulärer Import
+Unerwünschtes Verhalten: Eine Datei wird erstellt, obwohl der Ordner noch nicht explizit angegeben wurde. Das kann
+schnell zu einem Fehler führen.
 
-Die Lösung zur Vermeidung des zirkulären Imports (main.py in modul1.py; modul1.py in main.py) ist nicht schön, weil
-die Funktionen aus modul1.py aktuell nochmals in einer Funktion in main.py aufgerufen werden müssen um zu funktionieren.
+ Die globale Variabel eingabe_ordner ist in der Funktion zusammenfassen_button verfügbar.
 
-Bisherige Ideen für Alternativen: Nicht modularisieren. Die Funktionen in main.py definieren und als lambda-Funktion in
-den Tkinter-Widgets aufrufen?
+ Die gleiche Variabel sorgt auch dafür, dass nicht alle Funktionen in die functions.py ausgegliedert werden können. An-
+ sonsten wäre eine konsequentere Trennung von Design und Funktion möglich gewesen.
 
-Modul und Funktionen umbenennen (sprechende Bezeichnung)?
+ Mögliche Lösungsansätze:
 
-TODO Tkinter GUI
+ Den Benutzer ermöglichen mit einer Einstellung einen Standard-Eingabeordner vorzugeben und in
+ einer Konfigurationsdatei zu speichern.
 
-PDFuser optisch vom PDFSplitter trennen (nicht auf eine Seite anzeigen)
+ TODO Neue Datei mit Datum
 
-Tkinter Layout-Manager umstellen von Pack auf Grid
-
-Mehr Design
+ Evlt. die neu erzeugten Dateien mit einem Zeitstempel als suffix erzeugen lassen
