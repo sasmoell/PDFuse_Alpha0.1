@@ -2,7 +2,7 @@ import tkinter.messagebox
 from tkinter import ttk, filedialog
 from functions import *
 
-
+# Funktionen für den Fuser-Bereich
 def fuser_durchsuchen_button():
     global eingabe_ordner
     try:
@@ -11,7 +11,7 @@ def fuser_durchsuchen_button():
             print("Ausgewählter Ordner:", eingabe_ordner)  # Dient nur als Ausgabe auf der Konsole zur Kontrolle
             file_label.config(text=eingabe_ordner)
             return eingabe_ordner
-    except:
+    except FileNotFoundError:
         gen_error("Fehler", "Ein unerwarteter Fehler ist aufgetreten.")
 
 
@@ -24,10 +24,37 @@ def fusenow_button():
 
 
 def fuser_ausgabeordner_oeffnen_button():
-    ordner_pruefen_und_erstellen("output")
-    if os.path.exists("output"):
+    ordner_pruefen_und_erstellen("output/mergeoutput")
+    if os.path.exists("output/mergeoutput"):
         ordner_oeffnen("output")
-    elif not os.path.exists("output"):
+    elif not os.path.exists("output/mergeoutput"):
+        gen_message_info("Hinweis", "Kein Ordner vorhanden.")
+
+
+# Funktionen für den Splitter
+def splitter_durchsuchen_button():
+    global quelldatei
+    try:
+        quelldatei = filedialog.askopenfilename()
+        if quelldatei:
+            print("Ausgewählte Datei:", quelldatei)
+            splitfile_label.config(text=quelldatei)
+            return quelldatei
+    except FileNotFoundError:
+        gen_error("Fehler", "Datei nicht gefunden oder nicht lesbar.")
+
+def splitnow_button():
+    split_output_ordner = "output/splits"
+    try:
+        pdf_splitten(quelldatei, split_output_ordner)
+    except:
+        gen_error("Fehler", "Datei nicht gefunden. Durchsuchen-Button benutzen um die Datei zu suchen.")
+
+def splitter_ausgabeordner_oeffnen_button():
+    ordner_pruefen_und_erstellen("output/splits")
+    if os.path.exists("output/splits"):
+        ordner_oeffnen("output")
+    elif not os.path.exists("output/splits"):
         gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
@@ -116,7 +143,7 @@ splitfile_label = ttk.Label(splitframe, width=50, anchor="center")
 splitfile_label.config(text="...")
 splitfile_label.grid(row=1, column=0)
 
-splitdir_button = ttk.Button(splitframe, text="Durchsuchen")
+splitdir_button = ttk.Button(splitframe, text="Durchsuchen", command=splitter_durchsuchen_button)
 splitdir_button.grid(row=2, column=0)
 
 # BUTTON SECTION
@@ -126,9 +153,9 @@ buttonframe2.grid(pady=15, row=5)
 
 split_button = ttk.Button(buttonframe2)
 split_button.grid(row=0, column=0)
-split_button.configure(text="Split NOW!")
+split_button.configure(text="Split NOW!", command=splitnow_button)
 
-splitoutdir_button = ttk.Button(buttonframe2, text="Ausgabeordner öffnen")
+splitoutdir_button = ttk.Button(buttonframe2, text="Ausgabeordner öffnen", command=splitter_ausgabeordner_oeffnen_button)
 splitoutdir_button.grid(row=0, column=1)
 
 # Beenden-Button unten rechts
