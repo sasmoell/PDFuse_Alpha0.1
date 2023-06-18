@@ -2,6 +2,18 @@ import tkinter.messagebox
 from tkinter import ttk, filedialog
 from functions import *
 
+# Funktionen für das Menü
+
+def ausgabeordner_anlegen():
+    if os.path.exists("output/mergeoutput") and os.path.exists("output/splits"):
+        gen_message_info("Info", "Die Ordner existieren bereits.")
+    else:
+        try:
+            ordner_pruefen_und_erstellen("output/mergeoutput")
+            ordner_pruefen_und_erstellen("output/splits")
+        except OSError:
+            gen_error("Fehler", "Erstellen war nicht möglich.")
+
 # Funktionen für den Fuser-Bereich
 def fuser_durchsuchen_button():
     global eingabe_ordner
@@ -20,7 +32,7 @@ def fusenow_button():
     try:
         pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
     except:
-        gen_error("Fehler", "Pfad nicht gefunden. Durchsuchen-Button benutzen um den Pfad anzugeben")
+        gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
 
 
 def fuser_ausgabeordner_oeffnen_button():
@@ -48,7 +60,7 @@ def splitnow_button():
     try:
         pdf_splitten(quelldatei, split_output_ordner)
     except:
-        gen_error("Fehler", "Datei nicht gefunden. Durchsuchen-Button benutzen um die Datei zu suchen.")
+        gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
 
 def splitter_ausgabeordner_oeffnen_button():
     ordner_pruefen_und_erstellen("output/splits")
@@ -58,7 +70,7 @@ def splitter_ausgabeordner_oeffnen_button():
         gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
-# GUI mit Tkinter
+### --------------------------- GUI mit Tkinter --------------------------- ###
 
 root = tk.Tk()
 root.title("PDFuse Alpha 0.1.0523")
@@ -70,20 +82,25 @@ menubar = tk.Menu(root)
 
 dateimenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Datei", menu=dateimenu)
-dateimenu.add_command(label="Merge_Test", command=fusenow_button)
-dateimenu.add_separator()
-dateimenu.add_command(label="Ordner öffnen")
+dateimenu.add_command(label="PDFuser öffnen")
+dateimenu.add_command(label="PDFSplitter öffnen")
+dateimenu.add_command(label="Ausgabeordner öffnen", command=lambda: ordner_oeffnen("output"))
 dateimenu.add_separator()
 dateimenu.add_command(label="Beenden", command=root.destroy)
 
+optionenmenu = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Optionen", menu=optionenmenu)
+optionenmenu.add_command(label="Ausgabeordner anlegen", command=ausgabeordner_anlegen)
+optionenmenu.add_separator()
+
 hilfemenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Hilfe", menu=hilfemenu)
-hilfemenu.add_command(label="Info")
-hilfemenu.add_separator()
+hilfemenu.add_command(label="ReadMe")
+hilfemenu.add_command(label="Lizenz")
 
 root.config(menu=menubar)
 
-# Frame-Style
+# Frame-Style - Definiert einen Rahmen um Frames
 style = ttk.Style()
 style.configure('style.TFrame', borderwidth=2, relief='solid')
 
@@ -97,7 +114,7 @@ title_label.grid()
 desc_label = ttk.Label(headframe, text="Bitte Ordner auswählen, in dem sich die PDF-Dateien befinden.")
 desc_label.grid()
 
-# Ordnerauswahl Input Bereich
+# PDFuser Hauptbereich mit Ordnerauswahl
 dir_frame = ttk.Frame(root, style="style.TFrame", padding=10)
 dir_frame.grid(row=1)
 
@@ -108,10 +125,10 @@ file_label = ttk.Label(dir_frame, width=50, anchor="center")
 file_label.config(text="...")
 file_label.grid(row=2, column=0)
 
-dir_button = ttk.Button(dir_frame, text="Durchsuchen", command=fuser_durchsuchen_button)
+dir_button = ttk.Button(dir_frame, text="Ordner suchen", command=fuser_durchsuchen_button)
 dir_button.grid(row=3, column=0)
 
-# Button Section (PDFuser)
+# PDFuser Button Sektion
 buttonframe1 = ttk.Frame(root)
 buttonframe1.grid(row=2, pady=15)
 
@@ -122,7 +139,7 @@ merge_button.configure(text="Fuse NOW!", command=fusenow_button)
 outdir_button = ttk.Button(buttonframe1, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
 outdir_button.grid(row=0, column=1)
 
-# PDFSplitter Kopfbereich
+# PDFSplitter Kopfbereich mit Ordnerauswahl
 headframe2 = ttk.Frame(root)
 headframe2.grid(pady=(15, 0), row=3)
 
@@ -132,21 +149,21 @@ title_label.grid()
 splitdesc_label = ttk.Label(headframe2, text="Bitte wählen Sie zunächst die Datei aus.")
 splitdesc_label.grid()
 
-# SPLIT BEREICH
+# PDFSplitter Hauptbereich mit Ordnerauswahl
 splitframe = ttk.Frame(root, style="style.TFrame", padding=10)
 splitframe.grid(row=4, pady=(15, 0))
 
-splitinput_label = ttk.Label(splitframe, text="Ordner auswählen: ")
+splitinput_label = ttk.Label(splitframe, text="Datei auswählen: ")
 splitinput_label.grid(row=0, column=0)
 
 splitfile_label = ttk.Label(splitframe, width=50, anchor="center")
 splitfile_label.config(text="...")
 splitfile_label.grid(row=1, column=0)
 
-splitdir_button = ttk.Button(splitframe, text="Durchsuchen", command=splitter_durchsuchen_button)
+splitdir_button = ttk.Button(splitframe, text="Datei suchen", command=splitter_durchsuchen_button)
 splitdir_button.grid(row=2, column=0)
 
-# BUTTON SECTION
+# PDFSplitter Button
 
 buttonframe2 = ttk.Frame(root)
 buttonframe2.grid(pady=15, row=5)

@@ -9,8 +9,10 @@ from pypdf import PdfWriter, PdfReader
 def gen_error(titel, message):
     tk.messagebox.showerror(title=titel, message=message)
 
+
 def gen_message_info(titel, message):
     tk.messagebox.showinfo(title=titel, message=message)
+
 
 def gen_yesno(titel, message):
     tk.messagebox.askyesno(title=titel, message=message)
@@ -26,6 +28,7 @@ def ordner_oeffnen(pfad):
         except OSError:
             subprocess.Popen(['xdg-open', pfad])
 
+
 def ordner_pruefen_und_erstellen(pfad):
     if not os.path.exists(pfad):
         abfrage_box = tk.messagebox.askyesno(title="Frage",
@@ -36,6 +39,7 @@ def ordner_pruefen_und_erstellen(pfad):
                 gen_message_info("Info", f"Der Ordner {pfad} wurde erstellt.")
             except OSError:
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
+
 
 # Funktionen für PDFuser
 def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
@@ -65,6 +69,7 @@ def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
 
 
 split_output_ordner = "output/splits"
+
 
 def pdf_splitten(quelldatei, split_output_ordner):
     with open(quelldatei, 'rb') as file:
