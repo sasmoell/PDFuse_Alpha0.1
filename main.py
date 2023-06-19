@@ -104,8 +104,11 @@ root.config(menu=menubar)
 style = ttk.Style()
 style.configure('style.TFrame', borderwidth=2, relief='solid')
 
+############ ---------------- SEITE 01 ---------------- ############
+pag01frame = ttk.Frame(root)
+pag01frame.grid()
 # PDFuser Kopfbereich
-headframe = ttk.Frame(root)
+headframe = ttk.Frame(pag01frame)
 headframe.grid(pady=(0, 15), row=0)
 
 title_label = ttk.Label(headframe, text="PDFuser", font=("Arial", 22))
@@ -115,7 +118,7 @@ desc_label = ttk.Label(headframe, text="Bitte Ordner auswählen, in dem sich die
 desc_label.grid()
 
 # PDFuser Hauptbereich mit Ordnerauswahl
-dir_frame = ttk.Frame(root, style="style.TFrame", padding=10)
+dir_frame = ttk.Frame(pag01frame, style="style.TFrame", padding=10)
 dir_frame.grid(row=1)
 
 input_label = ttk.Label(dir_frame, text="Ordner auswählen:")
@@ -129,7 +132,7 @@ dir_button = ttk.Button(dir_frame, text="Ordner suchen", command=fuser_durchsuch
 dir_button.grid(row=3, column=0)
 
 # PDFuser Button Sektion
-buttonframe1 = ttk.Frame(root)
+buttonframe1 = ttk.Frame(pag01frame)
 buttonframe1.grid(row=2, pady=15)
 
 merge_button = ttk.Button(buttonframe1)
@@ -139,8 +142,13 @@ merge_button.configure(text="Fuse NOW!", command=fusenow_button)
 outdir_button = ttk.Button(buttonframe1, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
 outdir_button.grid(row=0, column=1)
 
+############ ---------------- SEITE 02 ---------------- ############
+
+pag02frame = ttk.Frame(root)
+pag02frame.grid()
+
 # PDFSplitter Kopfbereich mit Ordnerauswahl
-headframe2 = ttk.Frame(root)
+headframe2 = ttk.Frame(pag02frame)
 headframe2.grid(pady=(15, 0), row=3)
 
 title_label = ttk.Label(headframe2, text="PDFSplitter", font=("Arial", 22))
@@ -150,7 +158,7 @@ splitdesc_label = ttk.Label(headframe2, text="Bitte wählen Sie zunächst die Da
 splitdesc_label.grid()
 
 # PDFSplitter Hauptbereich mit Ordnerauswahl
-splitframe = ttk.Frame(root, style="style.TFrame", padding=10)
+splitframe = ttk.Frame(pag02frame, style="style.TFrame", padding=10)
 splitframe.grid(row=4, pady=(15, 0))
 
 splitinput_label = ttk.Label(splitframe, text="Datei auswählen: ")
@@ -165,7 +173,7 @@ splitdir_button.grid(row=2, column=0)
 
 # PDFSplitter Button
 
-buttonframe2 = ttk.Frame(root)
+buttonframe2 = ttk.Frame(pag02frame)
 buttonframe2.grid(pady=15, row=5)
 
 split_button = ttk.Button(buttonframe2)
@@ -174,6 +182,9 @@ split_button.configure(text="Split NOW!", command=splitnow_button)
 
 splitoutdir_button = ttk.Button(buttonframe2, text="Ausgabeordner öffnen", command=splitter_ausgabeordner_oeffnen_button)
 splitoutdir_button.grid(row=0, column=1)
+
+
+############ ---------------- Hauptfenster ---------------- ############
 
 # Beenden-Button unten rechts
 

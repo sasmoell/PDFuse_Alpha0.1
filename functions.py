@@ -41,6 +41,12 @@ def ordner_pruefen_und_erstellen(pfad):
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
 
 
+# Funktionen für die Navigation
+
+# def seite_ausblenden(frame):
+#     frame.grid_forget()
+
+
 # Funktionen für PDFuser
 def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
     merger = PdfWriter()
