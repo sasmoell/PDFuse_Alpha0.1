@@ -2,6 +2,7 @@ import tkinter.messagebox
 from tkinter import ttk, filedialog
 from functions import *
 
+
 # Funktionen für das Menü
 
 def ausgabeordner_anlegen():
@@ -13,6 +14,7 @@ def ausgabeordner_anlegen():
             ordner_pruefen_und_erstellen("output/splits")
         except OSError:
             gen_error("Fehler", "Erstellen war nicht möglich.")
+
 
 # Funktionen für den Fuser-Bereich
 def fuser_durchsuchen_button():
@@ -55,12 +57,14 @@ def splitter_durchsuchen_button():
     except FileNotFoundError:
         gen_error("Fehler", "Datei nicht gefunden oder nicht lesbar.")
 
+
 def splitnow_button():
     split_output_ordner = "output/splits"
     try:
         pdf_splitten(quelldatei, split_output_ordner)
     except:
         gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
+
 
 def splitter_ausgabeordner_oeffnen_button():
     ordner_pruefen_und_erstellen("output/splits")
@@ -70,17 +74,17 @@ def splitter_ausgabeordner_oeffnen_button():
         gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
-
 root = tk.Tk()
 root.title("PDF 2Fuse & Split Alpha 0.2.0623")
 root.config(pady=20, padx=20)
-#root.geometry("400x400")
+# root.geometry("400x400")
 root.resizable(False, False)
 
 # Menübar mit Funktionen
 
 menubar = tk.Menu(root)
 root.config(menu=menubar)
+
 
 def datei_seitenwahl(seite):
     seite01.grid()
@@ -93,6 +97,7 @@ def datei_seitenwahl(seite):
         seite02.grid(row=1)
     elif seite == 3:
         seite03.grid(row=1)
+
 
 dateimenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Datei", menu=dateimenu)
@@ -112,6 +117,10 @@ hilfemenu.add_command(label="ReadMe")
 hilfemenu.add_separator()
 hilfemenu.add_command(label="Update")
 
+# Styles
+style = ttk.Style()
+style.configure('redBTN.TButton', background='red', foreground='red')
+style.configure("greenBTN.TButton", backgorund="green", foreground="green")
 
 # Seite 01
 seite01 = ttk.Frame(root)
@@ -123,6 +132,11 @@ titel01.grid()
 desc01_label = ttk.Label(seite01, text="Tool zum Teilen und Aufteilen von PDF-Dokumenten")
 desc01_label.grid()
 
+# Icon
+icon = tk.PhotoImage(file="icon.gif")
+img_label = ttk.Label(seite01, image=icon)
+img_label.place(width=80, relheight=1)
+img_label.grid()
 
 # Seite 02
 seite02 = ttk.Frame(root)
@@ -149,10 +163,11 @@ seite02_btn.grid()
 
 fuse_button = ttk.Button(seite02_btn)
 fuse_button.grid(row=0, column=0)
-fuse_button.configure(text="Fuse NOW!", command=fusenow_button)
+fuse_button.configure(text="Fuse NOW!", command=fusenow_button, padding=(5, 10), style='greenBTN.TButton')
 
 ausgabedir_button = ttk.Button(seite02_btn, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
 ausgabedir_button.grid(row=0, column=1)
+ausgabedir_button.configure(padding=(5, 10))
 
 # Seite 03
 seite03 = ttk.Frame(root)
@@ -179,33 +194,15 @@ seite03_btn.grid()
 
 split_button = ttk.Button(seite03_btn)
 split_button.grid(row=0, column=0)
-split_button.configure(text="Splitt NOW!", command=splitnow_button)
+split_button.configure(text="Splitt NOW!", command=splitnow_button, padding=(5, 10), style='greenBTN.TButton')
 
 ausgabedir_button = ttk.Button(seite03_btn, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
 ausgabedir_button.grid(row=0, column=1)
+ausgabedir_button.configure(padding=(5, 10))
 
-###### B E E N D E N ########
-
-style = ttk.Style()
-style.configure('redBTN.TButton', background='red', foreground='red')
+# B E E N D E N ########
 
 beenden_button = ttk.Button(root, text="Beenden", command=root.destroy, style='redBTN.TButton')
 beenden_button.grid(row=2, sticky=tkinter.E, pady=(15, 0))
 
-
 root.mainloop()
-
-
-#
-#
-# ############ ---------------- Hauptfenster ---------------- ############
-#
-# # Beenden-Button unten rechts
-#
-# style = ttk.Style()
-# style.configure('redBTN.TButton', background='red', foreground='red')
-#
-# quit_button = ttk.Button(root, text="Beenden", command=root.destroy, style='redBTN.TButton')
-# quit_button.grid(row=6, column=0, sticky=tkinter.E, pady=(15, 0))
-#
-# root.mainloop()
