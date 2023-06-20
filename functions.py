@@ -1,9 +1,12 @@
 import os
 import subprocess
+import requests
+import webbrowser
 import tkinter as tk
 from tkinter import messagebox
 from pypdf import PdfWriter, PdfReader
 
+current_version = "0.1.2306"
 
 # Generische Fehlermeldungen
 def gen_error(titel, message):
@@ -88,3 +91,27 @@ def pdf_splitten(quelldatei, split_output_ordner):
                 output_pdf.write(output_file)
 
         gen_message_info("Hinweis", f"Dateien im Ordner {split_output_ordner} erstellt.")
+
+# Funktionen für Update-Prüfung
+
+update_pageurl = "https://mark42.de/fuser/alpha/"
+def update_seite_oeffnen():
+    webbrowser.open(update_pageurl)
+def version_online_pruefen():
+    vers_url = "https://mark42.de/fuser/alpha/release.txt"
+    version = requests.get(vers_url)
+    try:
+        if version.status_code == 200:
+            content = version.text
+            return content
+    except:
+        gen_error("Fehler", "Die Updateprüfung ist fehlgeschlagen.")
+
+def update_check():
+    versionsnummer = version_online_pruefen()
+    if versionsnummer != current_version:
+        gen_message_info("Neue Version", "Es ist eine neue Version verfügbar!")
+        print("Update vorhanden")
+    else:
+        gen_message_info("Version aktuell", "Sie arbeiten bereits mit der aktuellsten Version.")
+        print("Kein Update vorhanden")

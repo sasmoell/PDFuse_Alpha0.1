@@ -73,6 +73,18 @@ def splitter_ausgabeordner_oeffnen_button():
     elif not os.path.exists("output/splits"):
         gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
+# Funktionen für Update
+
+def update_menu_button():
+    try:
+        version_online_pruefen()
+    except:
+        gen_error("Prüfung fehlgeschlagen", "Die Überprüfung ist fehlgeschlagen. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.")
+    try:
+        update_check()
+    except:
+        gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
+
 
 root = tk.Tk()
 root.title("PDF 2Fuse & Split Alpha 0.2.0623")
@@ -115,7 +127,8 @@ menubar.add_cascade(label="Hilfe", menu=hilfemenu)
 hilfemenu.add_command(label="Info")
 hilfemenu.add_command(label="ReadMe")
 hilfemenu.add_separator()
-hilfemenu.add_command(label="Update")
+hilfemenu.add_command(label="Check for Update", command=update_menu_button)
+hilfemenu.add_command(label="Update Download", command=lambda: update_seite_oeffnen())
 
 # Styles
 style = ttk.Style()
