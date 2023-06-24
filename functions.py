@@ -1,3 +1,12 @@
+# Dieses Modul verwendet PyPDF (Version 3.11.0)
+# Copyright (c) 2006-2008, Mathieu Fenniak
+# Some contributions copyright (c) 2007, Ashish Kulkarni <kulkarni.ashish@gmail.com>
+# Some contributions copyright (c) 2014, Steve Witham <switham_github@mac-guyver.com>
+# Lizenziert unter der BSD 3-Clause Lizenz.
+#
+# Dieses Modul verwendet die Requests-Bibliothek (https://requests.readthedocs.io/).
+# Requests ist unter der Apache-Lizenz 2.0 (https://www.apache.org/licenses/LICENSE-2.0) lizenziert.
+
 import os
 import subprocess
 import requests
@@ -6,7 +15,7 @@ import tkinter as tk
 from tkinter import messagebox
 from pypdf import PdfWriter, PdfReader
 
-current_version = "0.1.2306"
+current_version = "0.1.2306" # Korrekte Angabe ist wichtig um auf Updates zu prüfen.
 
 # Generische Fehlermeldungen
 def gen_error(titel, message):
@@ -70,9 +79,7 @@ def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
 
 # Funktionen für PDFSplitter
 
-
 split_output_ordner = "output/splits"
-
 
 def pdf_splitten(quelldatei, split_output_ordner):
     with open(quelldatei, 'rb') as file:

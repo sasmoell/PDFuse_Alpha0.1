@@ -1,5 +1,6 @@
 import tkinter.messagebox
 from tkinter import ttk, filedialog
+import functions
 from functions import *
 
 
@@ -87,7 +88,7 @@ def update_menu_button():
 
 
 root = tk.Tk()
-root.title("PDF 2Fuse & Split Alpha 0.2.0623")
+root.title(f"PDF 2Fuse & Split Alpha {functions.current_version}")
 root.config(pady=20, padx=20)
 # root.geometry("400x400")
 root.resizable(False, False)
