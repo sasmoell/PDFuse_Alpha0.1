@@ -1,9 +1,89 @@
-<mxfile host="app.diagrams.net" modified="2023-06-25T13:13:52.200Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" version="21.5.0" etag="zYYLOmQdAEe6Lmu7_x3a" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-25T13:35:18.227Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="HUP_y_C3umF2H7F3t40b" version="21.5.0" type="github">
   <diagram name="Seite-1" id="z2froGWdfn9ouF2fLTrf">
-    <mxGraphModel>
+    <mxGraphModel dx="2074" dy="1116" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-2" target="xmYlkgfEZDCuhrtj4b7d-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-2" value="START&lt;br&gt;PDFuser" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-3" target="xmYlkgfEZDCuhrtj4b7d-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-3" value="Pfadeingabe des Benutzers" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-5" target="xmYlkgfEZDCuhrtj4b7d-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-5" value="Startbefehl &quot;Fuse NOW!&quot; durch den Benutzer" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="351" y="230" width="126" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-8" target="xmYlkgfEZDCuhrtj4b7d-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-8" target="xmYlkgfEZDCuhrtj4b7d-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-8" value="Benutzer hat den Dateipfad angegeben?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="356" y="320" width="116" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-9" value="Fehlermeldung" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="345" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-11" value="NEIN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="472" y="345" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-9" target="xmYlkgfEZDCuhrtj4b7d-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="590" as="sourcePoint" />
+            <mxPoint x="440" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="600" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-15" target="xmYlkgfEZDCuhrtj4b7d-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-15" target="xmYlkgfEZDCuhrtj4b7d-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-15" value="Im angegebenen Pfad befinden sich PDF-Dokumente?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="356" y="468" width="116" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-18" value="Fehlermeldung" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="588" y="493" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="xmYlkgfEZDCuhrtj4b7d-18" target="xmYlkgfEZDCuhrtj4b7d-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="590" as="sourcePoint" />
+            <mxPoint x="440" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="750" y="523" />
+              <mxPoint x="750" y="480" />
+              <mxPoint x="750" y="440" />
+              <mxPoint x="750" y="350" />
+              <mxPoint x="750" y="270" />
+              <mxPoint x="750" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-21" value="NEIN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="492" y="496" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-22" value="pdf_zusammenfassen()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="316" y="620" width="196" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-24" value="JA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="438" width="41" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xmYlkgfEZDCuhrtj4b7d-25" value="JA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="578" width="41" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
