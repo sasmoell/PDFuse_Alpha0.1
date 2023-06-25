@@ -111,13 +111,20 @@ def version_online_pruefen():
         if version.status_code == 200:
             content = version.text
             return content
+        elif version.status_code != 200: # NEU
+            gen_error("Fehler", "Fehler beim Abrufen der Versionsnummer")
+            content = None
+            return content
     except:
         gen_error("Fehler", "Die Updateprüfung ist fehlgeschlagen.")
 
 def update_check():
     versionsnummer = version_online_pruefen()
-    if versionsnummer != current_version:
-        gen_message_info("Neue Version", "Es ist eine neue Version verfügbar!")
+    if versionsnummer == None:
+        gen_error("Fehler", "Versionsnummer konnte nicht geprüft werden.")
+        return
+    elif versionsnummer != current_version:
+        gen_message_info("Neue Version", f"Version {versionsnummer} ist verfügbar! - Unter Hilfe -> Update Download finden Sie weitere Informationen.")
         print("Update vorhanden")
     else:
         gen_message_info("Version aktuell", "Sie arbeiten bereits mit der aktuellsten Version.")
