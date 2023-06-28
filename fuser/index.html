@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <div id="navigation"></div>
+    <title>PDF2Fuse Alpha</title>
+</head>
+<body>
+
+    <div class="centerDIV">
+        <div id="disclaimer">
+            <h2>Haftungsausschluss</h2>
+            <p>Die Verwendung des Programms erfolgt auf eigenes Risiko. Ich hafte nicht für etwaige Schäden oder Verluste, die sich aus der Nutzung des Programms ergeben können. Dies schließt direkte, indirekte, zufällige oder Folgeschäden mit ein, die durch den Gebrauch oder die Unmöglichkeit des Gebrauchs des Programms entstehen können. <br><br> Wir weisen darauf hin, dass das Programm möglicherweise Sicherheitslücken oder Fehler aufweisen kann. Es liegt in Ihrer Verantwortung, geeignete Maßnahmen zu ergreifen, um Ihre Systeme und Daten vor solchen Risiken zu schützen. </p>
+        </div>
+        <br>
+        <hr>
+            <h2 id="dokumentation">DOKUMENTATION</h2>
+            <p>PDFuse Alpha 0.1.2306</p>
+
+            <div class="grid">
+
+                <div class="grid-item">
+                    <img src="img/screens/image001.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Hauptansicht</h3>
+                    <p>PDFuse ist ein Programm um PDF-Dokumente zusammenzufügen (Merger) oder zu teilen (Splitter). Es wurde in Python geschrieben und nutzt vor allem die externe Bibliothek pypdf. <br> Folgend finden Sie die Dokumentation um mit dem Tool umgehen zu können.</p>
+                </div>                
+                
+                <div class="grid-item">
+                    <img src="img/screens/image003.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Menüleiste - Dateimenü</h3>
+                    <p>
+                        <ol>
+                            <li>PDF zusammenzufügen (Fuser)</li>
+                            <p>Startet den Fuser um mehrere PDF-Dokumenten zu einer Datei zusammenzufügen. Der Fuser ist beim Start des Programms sichtbar.</p>
+                            <li>PDF teilen (Splitter)</li>
+                            <p>Startet den Splitter um aus einem PDF-Dokument alle Seiten zu extrahieren und je Seite eine Datei zu erstellen.</p>
+                            <li>Beenden</li>
+                            <p>Beendet das Programm</p>
+                        </ol>
+                    </p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="img/screens/image005.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Menüleiste - Optionenmenü</h3>
+                    <p>
+                        <ol>
+                            <li>Ordner anlegen</li>
+                            <p>Legt die erforderlichen Ausgabeordner an. Dadurch werden die Ordner im Stammverzeichnis des Programms angelegt. <br> <br>Ordner: output <br>Unterordner: mergeoutput <br>Unterordner: splits</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image007.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Menüleiste - Hilfemenü</h3>
+                    <p>
+                        <ol>
+                            <li>Info</li>
+                            <p>Zeigt Informationen zum Programm.</p>
+                            <li>Dokumentation</li>
+                            <p>Verweist auf diese Dokumentation.</p>
+                            <li>Check for Updates</li>
+                            <p>Überprüft ob ein Update vorhanden ist. Benötigt eine funktionierende Verbindung ins Internet.</p>
+                            <li>Update Download</li>
+                            <p>Verweist auf die Downloadseite des PDFuser.</p>
+                        </ol>
+                    </p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="img/screens/image009.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Dateien mit PDFuser zusammenfügen</h3>
+                    <p>
+                        <ol>
+                            <li>Ordner suchen</li>
+                            <p>Sie haben Ihre Dateien in einem Ordner liegen und möchten diese nun zu einer Datei verschmelzen. Klicken Sie zunächst auf "Ordner suchen" um den Ordner mit Ihren Dateien zu finden.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image011.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Datei-Manager öffnet sich</h3>
+                    <p>
+                        Es öffnet sich der Explorer (Windows) oder der Finder (macOS). Auch wenn der PDFuser ausdrücklich für Windows entwickelt wurde, sollte er mit macOS und Linux kompatibel sein. Getestet wurde er allerdings nur unter Windows 11.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image013.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <h3>Ordner auswählen</h3>
+                    <p>
+                        <ol>
+                            <li>Das richtige Laufwerk wählen</li>
+                            <p>Wählen Sie das Laufwerk aus, indem sich Ihr Ordner befindet.</p>
+                            <li>Den richtigen Ordner wählen</li>
+                            <p>Wählen Sie nun den Ordner aus, in dem sich Ihre PDF-Dateien befinden.</p>
+                            <li>"Ordner auswählen" klicken</li>
+                            <p>Mit "Ordner auswählen" schließen Sie das Fenster wieder und haben den korrekten Ordner ausgewählt.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image015.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Pfad zum Ordner</li>
+                            <p>Hier sollte jetzt der korrekte Ordnerpfad angezeigt werden. Wenn dem so ist, kann es weitergehen.</p>
+                            <li>Fuse NOW!</li>
+                            <p>Mit einem Klick auf "Fuse NOW!" wird der Vorgang gestartet.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image017.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Es erscheint die Meldung, dass die Datei erstellt wurde.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image018.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabeordner öffnen</li>
+                            <p>Wo sind Ihre Dateien? Sie finden sie im Stammverzeichnis des Programms unter "output". Sie können mit einem Klick auf "Ausgabeordner öffnen" den Dateipfad ganz einfach öffnen.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image020.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabeordner</li>
+                            <p>Der Ausgabeordner des PDFuser ist unter "output" und ist mit "mergeoutput" benannt.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image022.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabe-Datei</li>
+                            <p>Die neu erzeugte Datei (new_file.pdf) beinhaltet alle PDF-Dokumente, die sich im Ursprungsordner befunden haben. Hinweis: Die Dateien befinden sich immer noch dort. Es wurde jeweils eine Kopie erstellt und diese wurden dann zusammengefügt.</p>
+                            <li>Seite 1 von 3</li>
+                            <p>Das Dokument hat nun drei Seiten in diesem Beispiel.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image024.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <h3>PDF teilen (Splitter)</h3>
+                        <ol>
+                            <li>Startet den Splitter um aus einer PDF-Datei alle Seiten zu extrahieren und zu speichern.</li>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image026.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Datei suchen</li>
+                            <p>Öffnet den Windows-Explorer um nach der Datei zu suchen, die gesplittet werden soll.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image028.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Datei angeben, die gesplittet werden soll.</li>
+                            <p></p>
+                            <li>Anschließend im Dialog "Öffnen" klicken.</li>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image030.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Der Dateipfad wird hier angezeigt.</li>
+                            <p>Sollte der Pfad nicht angezeigt werden, wiederholen Sie den Vorgang.</p>
+                            <li>Splitt NOW!</li>
+                            <p>Startet den Vorgang um alle Seiten zu extrahieren und zu speichern.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image032.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Sollte der Ausgabeordner noch nicht vorhanden sein, wird gefragt, ob er erstellt werden soll. Der Ausgabeordner ist notwendig um die Dateien zu speichern. Die Meldung sollte mit "Ja" bestätigt werden.
+                    </p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="img/screens/image034.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                       Wenn die Ordner erstellt werden konnte, wird diese Meldung erscheinen. Diese ist mit "OK" zu bestätigen.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image035.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                       Die nächste Meldung weist darauf hin, dass die Dateien erstellt wurden.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image036.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabe-Ordner öffnen</li>
+                            <p>Die Dateien befinden sich im Ordner "output/splits". Der Ordner kann bequem über den Button aufgerufen werden.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image038.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabe-Ordner</li>
+                    </ol>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image040.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Ausgabe-Dateien</li>
+                            <p>Die neu erzeugten Dateien befinden sich nun im Ausgabe-Ordner.</p>
+                        </ol>
+                    </p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="img/screens/image042.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Menü: Optionen --> Ordner anlegen <br><br>
+                        Die Option "Ordner anlegen" legt die benötigten Ausgabeordner an. Es sind Schreibrechte im Dateisystem notwendig. Dieser Schritt ist optional, da er bei Bedarf vom Programm auch abgefragt wird. Wenn diese Option genutzt wird, werden im Programmverzeichnis folgende Ordner erstellt: <br><br>
+                        1. Ordner: output <br>
+                        2. Unterordner: mergeoutput <br>
+                        3. Unterordner: splits
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image044.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Sollten die Ordner bereits existieren, wird entsprechend diese Meldung ausgegeben.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image045.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Sind die Ordner noch nicht vorhanden, wird eine entsprechende Abfrage gestartet.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image047.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Ordner für den Merger (zusammenfügen von PDFs) erstellt.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image049.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Ordner für den Splitter erstellt
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image050.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        Ausgabeordner
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image052.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Hilfemenü: Info</li>
+                            <p>Zeigt Informationen zum Programm an wie z.B. Version, Urheberrechte, Lizenz, Kontakt etc.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image054.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                       <ol>
+                        <li>Dokumentation</li>
+                        <p>Verweist auf diese Dokumentation. Funktionierende Verbindung zum Internet ist für die Online-Version erforderlich.</p>
+                       </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image056.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Check for Updates</li>
+                            <p>Diese Funktion überprüft, ob sich auf dem Server ein Update befindet. Eine Verbindung zum Internet ist zwingend notwendig.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image058.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                       Falls ein Update vorhanden ist, wird diese Meldung ausgegeben.
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image059.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Update Download</li>
+                            <p>Verweist auf diese Seite. Hier können Updates heruntergeladen werden.</p>
+                        </ol>
+                    </p>
+                </div> 
+
+                <div class="grid-item">
+                    <img src="img/screens/image063.png" alt="">
+                </div>
+                <div class="grid-item">
+                    <p>
+                        <ol>
+                            <li>Beenden</li>
+                            <li>Beenden</li>
+                            <p>Beide haben die gleiche Funktion: Sie beenden das laufende Programm</p>
+                        </ol>
+                    </p>
+                </div>
+            </div>
+        <hr>
+        <h2>Lizenz</h2>(BSD 3-clause)
+        <p>&copy Copyright 2023 Sascha Möller
+            <br><br>
+            Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+            <br><br>
+            1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+            <br><br>
+            2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+            <br><br>
+            3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+            <br><br>
+            THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+            <hr>
+
+    </div>
+    
+</body>
+</html>

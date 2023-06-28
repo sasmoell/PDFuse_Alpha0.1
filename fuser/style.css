@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {    
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: dotted;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+
+nav, #disclaimer {
+    background-color: lightseagreen;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 15px black;
+}
+
+nav > ul > li {
+    display: inline;
+}
+
+#pdf-icon {
+    display: block;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.centerDIV {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 45% auto;
+    gap: 20px;
+}
+
+.grid-item {
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+}
+
+img {
+    max-width: 450px;
+}
