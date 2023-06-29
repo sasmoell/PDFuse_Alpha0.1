@@ -17,7 +17,6 @@ from pypdf import PdfWriter, PdfReader
 
 current_version = "0.1.2306"  # Korrekte Angabe ist wichtig um auf Updates zu prüfen.
 
-
 # Generische Fehlermeldungen
 def gen_error(titel, message):
     tk.messagebox.showerror(title=titel, message=message)
