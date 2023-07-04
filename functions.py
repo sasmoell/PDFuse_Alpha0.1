@@ -17,20 +17,28 @@ from pypdf import PdfWriter, PdfReader
 
 current_version = "0.1.2306"  # Korrekte Angabe ist wichtig um auf Updates zu prüfen.
 
-# Generische Fehlermeldungen
+
+# # # # # # Allgemeine (Fehler)Meldungen # # # # # #
+
+# Generische Fehlermeldungen: Es werden im Programm diverse unter Umständen Fenster für Fragen, Fehler und Hinweise ausgegeben. Um den Umgang im Code damit etwas zu vereinfachen, wurden sie hier als Funktion definiert. Der Titel und die Nachricht können als String-Argument übergeben werden.
+
 def gen_error(titel, message):
     tk.messagebox.showerror(title=titel, message=message)
 
 
+# Allgemeiner Hinweis
 def gen_message_info(titel, message):
     tk.messagebox.showinfo(title=titel, message=message)
 
 
+# Frage mit JA/NEIN Auswahl
 def gen_yesno(titel, message):
     tk.messagebox.askyesno(title=titel, message=message)
 
 
-# Allgemeine Funktionen
+# # # # # # Allgemeine Funktionen # # # # # #
+
+# Mit der Bibliothek subprocess wird im Falle eines Windows-OS versucht der Explorer zu öffnen. Für den Fall, dass es nicht funktioniert wird eine macOS-Umgebung angenommen und der "open"-Befehl versucht auszuführen. Sollte auch das noch fehlschlagen, wird ein Linux-OS angenommen.
 def ordner_oeffnen(pfad):
     try:
         subprocess.Popen(f'explorer {pfad}')
@@ -41,6 +49,7 @@ def ordner_oeffnen(pfad):
             subprocess.Popen(['xdg-open', pfad])
 
 
+# Die Funktion überprüft zunächst, ob ein Pfad (hier ein Argument, welches übergeben werden kann) vorhanden ist. Falls der Pfad nicht vorhanden ist, wird gefragt, ob er erstellt werden soll. Anschließend wird er je nach Auswahl erstellt oder nicht.
 def ordner_pruefen_und_erstellen(pfad):
     if not os.path.exists(pfad):
         abfrage_box = tk.messagebox.askyesno(title="Frage",
@@ -52,48 +61,57 @@ def ordner_pruefen_und_erstellen(pfad):
             except OSError:
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
 
+
+# Die Funktion ruft eine beliebige Datei auf. Im Fall des Projektes die Offline-Hilfe (HTML-Dokument).
 def hilfe_aufrufen(pfad):
     os.startfile(pfad)
 
-# Funktionen für PDFuser
+
+# # # # # # PDFuser Funktionen für PDFs zusammenfassen # # # # # #
+
+# Funktionen für PDFuser. Hier wird der PdfWriter aus pypdf genutzt. Da pypdf die grundlegendste Bibliothek des Projektes ist, wird hier etwas ausführlicher kommentiert.
 def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
-    merger = PdfWriter()
+    merger = PdfWriter()  # Erstellt ein PdfWriter-Objekt aus der Klasse zum Zusammenführen der PDFs.
 
     pdf_dateien = [d for d in os.listdir(eingabe_ordner) if
-                   d.endswith(".pdf")]  # Listet alle Dateien mit der *.pdf-Endung im Ordner eingabe_ordner auf
+                   d.endswith(".pdf")]  # Erstellt eine Liste der PDF-Dateien im Eingabeordner mit einer List Comprehension. Die For-Schleife wird direkt in der Liste ausgeführt.
 
-    if not os.path.exists("output/mergeoutput"):  # Überprüft ob der Ordner nicht vorhanden
+    if not os.path.exists("output/mergeoutput"):  # Überprüft, ob der Ausgabeordner existiert.
         try:
-            os.makedirs("output/mergeoutput")  # Versucht Ordner zu erstellen
+            os.makedirs("output/mergeoutput")  # Versucht den Ordner zu erstellen, falls er nicht existiert.
         except OSError:
             gen_error("Fehler",
                       "Ordner konnte nicht erstellt werden.")
 
-    for i in pdf_dateien:
-        dateipfad = eingabe_ordner + "/" + i  # FOR-Schleife setzt den Dateipfad für den Merger zusammen
-        merger.append(dateipfad)
+    for i in pdf_dateien:  # Schleife über jede PDF-Datei im Eingabeordner.
+        dateipfad = eingabe_ordner + "/" + i  # Erstellt den vollständigen Dateipfad.
+        merger.append(dateipfad)  # Fügt die PDF-Datei bzw. den Pfad zum PdfWriter-Objekt hinzu.
 
-    merger.write(ausgabe_datei)
-    merger.close()
+    merger.write(ausgabe_datei)  # Schreibt die zusammengeführten PDFs in die Ausgabedatei.
+    merger.close()  # Wer es aufmacht, muss es auch wieder schließen! ;-)
 
-    tk.messagebox.showinfo(title="Info", message="Die Datei wurde erstellt.")
+    tk.messagebox.showinfo(title="Info",
+                           message="Die Datei wurde erstellt.")  # Zeigt eine Infomeldung an, dass die Datei erstellt wurde.
 
 
-# Funktionen für PDFSplitter
+# # # # # # PDFuser Funktionen für PDFs teilen (splitten) # # # # # #
+
+# Funktionen für PDFSplitter. Hier wird der PdfReader aus pypdf genutzt. Da pypdf die grundlegendste Bibliothek des Projektes ist, wird hier etwas ausführlicher kommentiert.
 
 split_output_ordner = "output/splits"
 
 
 def pdf_splitten(quelldatei, split_output_ordner):
-    with open(quelldatei, 'rb') as file:
-        pdf = PdfReader(file)
+    with open(quelldatei, 'rb') as file:  # öffnen der quelldatei im binären Modus 'rb'
+        pdf = PdfReader(file)  # Erstellt ein PdfReader-Objekt aus der Klasse und übergibt die quelldatei (as file)
 
-        ordner_pruefen_und_erstellen("output/splits")
+        ordner_pruefen_und_erstellen("output/splits")  # Funktion ist oben beschrieben und kommentiert
 
         # PDF-Datei in einzelne Seiten aufteilen
-        for page_number, page in enumerate(pdf.pages):
-            output_pdf = PdfWriter()
-            output_pdf.add_page(page)
+        for page_number, page in enumerate(
+                pdf.pages):  # Jede Seite der Datei wird mit der FOR-Schleife aufgelistet um darauf zugreifen zu können
+            output_pdf = PdfWriter()  # Der PdfWriter wird erstellt
+            output_pdf.add_page(page)  # Die Seiten werden an den PdfWriter übergeben
 
             # Speichere jede Seite als separate PDF-Datei
             output_filename = os.path.join(split_output_ordner, f'page_{page_number + 1}.pdf')
@@ -103,15 +121,16 @@ def pdf_splitten(quelldatei, split_output_ordner):
         gen_message_info("Hinweis", f"Dateien im Ordner {split_output_ordner} erstellt.")
 
 
-# Funktionen für Update-Prüfung
+# # # # # # Funktionen für Update-Prüfung # # # # # #
 
-update_pageurl = "https://mark42.de/fuser/alpha/"
+update_pageurl = "https://mark42.de/fuser/alpha/"  # Online Ressource
 
 
-def update_seite_oeffnen():
+def update_seite_oeffnen():  # Wird aktuell nicht verwendet. Öffnet die Online-Dokumentation vom Programm.
     webbrowser.open(update_pageurl)
 
 
+# Versucht die Datei release.txt online zu erreichen und die Versionsnummer zu ermitteln. Die Bibliothek Requests kommt zum Einsatz um den Status der Datei zu ermitteln.
 def versionsnummer_online_pruefen():
     vers_url = "https://mark42.de/fuser/alpha/release.txt"
     version = requests.get(vers_url)
@@ -127,6 +146,7 @@ def versionsnummer_online_pruefen():
         gen_error("Fehler", "Die Updateprüfung ist fehlgeschlagen.")
 
 
+# Prüft ob die Onlineversionsnummer verfügbar ist und vergleicht die aktuelle Versionsnummer mit der Onlineversionsnummer. Wenn die Nummern unterschiedlich sind, wird ein Update gemeldet.
 def update_check():
     versionsnummer = versionsnummer_online_pruefen()
     if versionsnummer == None:

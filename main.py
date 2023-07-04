@@ -1,11 +1,8 @@
 import os
 import tkinter as tk
 from tkinter import ttk, filedialog
+import functions as fu
 
-import functions
-
-
-# IMPORTE TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/7
 
 # # # # # # Funktionen für die Menüleiste # # # # # #
 
@@ -25,25 +22,25 @@ def datei_seitenwahl(seite):
 
 # Die Funktion ausgabeordner() anlegen überprüft, ob die Standard-Ausgabeordner vorhanden sind. Falls nicht wird mit der Funktion ordner_pruefen_und_erstellen() aus dem Modul functions.py die Ordner angelegt.
 def ausgabeordner_anlegen():
-    if os.path.exists("output/mergeoutput") and functions.os.path.exists("output/splits"):
-        functions.gen_message_info("Info", "Die Ordner existieren bereits.")
+    if os.path.exists("output/mergeoutput") and fu.os.path.exists("output/splits"):
+        fu.gen_message_info("Info", "Die Ordner existieren bereits.")
     else:
         try:
-            functions.ordner_pruefen_und_erstellen("output/mergeoutput")
-            functions.ordner_pruefen_und_erstellen("output/splits")
+            fu.ordner_pruefen_und_erstellen("output/mergeoutput")
+            fu.ordner_pruefen_und_erstellen("output/splits")
         except OSError:
-            functions.gen_error("Fehler", "Erstellen war nicht möglich.")
+            fu.gen_error("Fehler", "Erstellen war nicht möglich.")
 
 
 # Die Funktion menu_doku() ist in der Menüleiste -> Hilfe -> Dokumentation gebunden. Sie ruft aus einem mitgelieferten Unterordner eine index.html mit der Dokumentation zum Programm auf.
 def menu_doku():
     try:
-        functions.hilfe_aufrufen("fuser\index.html")
+        fu.hilfe_aufrufen("fuser\index.html")
     except FileNotFoundError:
         try:
-            functions.hilfe_aufrufen("fuser/index.html")
+            fu.hilfe_aufrufen("fuser/index.html")
         except FileNotFoundError:
-            functions.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
+            fu.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
 
 
 # Funktion für Menüleiste -> Hilfe -> Update-Check
@@ -51,14 +48,14 @@ def menu_doku():
 
 def update_menu_button():
     try:
-        functions.versionsnummer_online_pruefen()
+        fu.versionsnummer_online_pruefen()
     except:
-        functions.gen_error("Prüfung fehlgeschlagen",
+        fu.gen_error("Prüfung fehlgeschlagen",
                             "Die Überprüfung ist fehlgeschlagen. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.")
     try:
-        functions.update_check()
+        fu.update_check()
     except:
-        functions.gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
+        fu.gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
 
 
 # # # # # # Funktionen für den Fuser PDF-Dateien zusammenfügen # # # # # #
@@ -74,7 +71,7 @@ def fuser_durchsuchen_button():
             print("Ausgewählter Ordner:", eingabe_ordner)  # nur für debugging benötigt
             file_label01.config(text=eingabe_ordner)
     except FileNotFoundError:
-        functions.gen_error("Fehler", "Ein unerwarteter Fehler ist aufgetreten.")
+        fu.gen_error("Fehler", "Ein unerwarteter Fehler ist aufgetreten.")
 
 
 # Die Funktion fusenow_button() erstellt den Pfad/Name der Ausgabedatei und versucht aus der functions.py die Funktion pdf_zusammenfassen() aufzurufen
@@ -83,19 +80,19 @@ def fuser_durchsuchen_button():
 def fusenow_button():
     ausgabe_datei = "output/mergeoutput/new_file.pdf"
     try:
-        functions.pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
+        fu.pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
     except:
-        functions.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
+        fu.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
 
 
 # Die Funktion fuser_ausgabeordner_oeffnen_button() ruft zunächst aus fuctions.py die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet. Der Benutzer muss so nicht lange in seinem Dateisystem suchen und kommt direkt zum Zielordner.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/3#issue-1774093733
 def fuser_ausgabeordner_oeffnen_button():
-    functions.ordner_pruefen_und_erstellen("output/mergeoutput")
-    if functions.os.path.exists("output/mergeoutput"):
-        functions.ordner_oeffnen("output")
-    elif not functions.os.path.exists("output/mergeoutput"):
-        functions.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
+    fu.ordner_pruefen_und_erstellen("output/mergeoutput")
+    if fu.os.path.exists("output/mergeoutput"):
+        fu.ordner_oeffnen("output")
+    elif not fu.os.path.exists("output/mergeoutput"):
+        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
 # Funktionen für den Splitter
@@ -113,32 +110,32 @@ def splitter_durchsuchen_button():
             file_label02.config(text=quelldatei)
             return quelldatei
     except FileNotFoundError:
-        functions.gen_error("Fehler", "Datei nicht gefunden oder nicht lesbar.")
+        fu.gen_error("Fehler", "Datei nicht gefunden oder nicht lesbar.")
 
 
 # Die Funktion splitnow_button() erstellt eine Variabel mit einem Standard-Ordnerpfad und versucht aus der functions.py die Funktion pdf_splitten() aufzurufen
 def splitnow_button():
     split_output_ordner = "output/splits"
     try:
-        functions.pdf_splitten(quelldatei, split_output_ordner)
+        fu.pdf_splitten(quelldatei, split_output_ordner)
     except:
-        functions.gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
+        fu.gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
 
 
 # Die Funktion splitter_ausgabeordner_oeffnen_button() ruft zunächst aus fuctions.py die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet. Der Benutzer muss so nicht lange in seinem Dateisystem suchen und kommt direkt zum Zielordner.
 def splitter_ausgabeordner_oeffnen_button():
-    functions.ordner_pruefen_und_erstellen("output/splits")
-    if functions.os.path.exists("output/splits"):
-        functions.ordner_oeffnen("output")
-    elif not functions.os.path.exists("output/splits"):
-        functions.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
+    fu.ordner_pruefen_und_erstellen("output/splits")
+    if fu.os.path.exists("output/splits"):
+        fu.ordner_oeffnen("output")
+    elif not fu.os.path.exists("output/splits"):
+        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
 # # # # # # Tkinter Benutzeroberfläche # # # # # #
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title(f"PDF 2Fuse & Split Alpha {functions.current_version}")
+    root.title(f"PDF 2Fuse & Split Alpha {fu.current_version}")
     root.config(pady=20, padx=20)
     # root.geometry("400x400")
     root.resizable(False, False)
@@ -165,7 +162,7 @@ if __name__ == "__main__":
     hilfemenu.add_command(label="Dokumentation", command=menu_doku)
     hilfemenu.add_separator()
     hilfemenu.add_command(label="Update-Check", command=update_menu_button)
-    hilfemenu.add_command(label="Update Download", command=lambda: functions.update_seite_oeffnen())
+    hilfemenu.add_command(label="Update Download", command=lambda: fu.update_seite_oeffnen())
 
     # Styles
     style = ttk.Style()
