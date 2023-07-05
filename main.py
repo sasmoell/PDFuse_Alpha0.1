@@ -1,13 +1,13 @@
-import os
-import tkinter as tk
+from os import path
 from tkinter import ttk, filedialog
+import tkinter as tk
 import functions as fu
 
 
 # # # # # # Funktionen für die Menüleiste # # # # # #
 
 # datei_seitenwahl() ermöglicht die Navigation durch die GUI über die Menüleiste. Die ttkFrames werden entsprechend ein- und ausgeblendet.
-def datei_seitenwahl(seite):
+def menu_navigation(seite):
     seite01.grid()
     seite02.grid_remove()
     seite03.grid_remove()
@@ -22,7 +22,7 @@ def datei_seitenwahl(seite):
 
 # Die Funktion ausgabeordner() anlegen überprüft, ob die Standard-Ausgabeordner vorhanden sind. Falls nicht wird mit der Funktion ordner_pruefen_und_erstellen() aus dem Modul functions.py die Ordner angelegt.
 def ausgabeordner_anlegen():
-    if os.path.exists("output/mergeoutput") and fu.os.path.exists("output/splits"):
+    if path.exists("output/mergeoutput") and fu.os.path.exists("output/splits"):
         fu.gen_message_info("Info", "Die Ordner existieren bereits.")
     else:
         try:
@@ -147,8 +147,8 @@ if __name__ == "__main__":
 
     dateimenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Datei", menu=dateimenu)
-    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: datei_seitenwahl(2))
-    dateimenu.add_command(label="PDF teilen (Splitter)", command=lambda: datei_seitenwahl(3))
+    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: menu_navigation(2))
+    dateimenu.add_command(label="PDF teilen (Splitter)", command=lambda: menu_navigation(3))
     dateimenu.add_separator()
     dateimenu.add_command(label="Beenden", command=root.destroy)
 

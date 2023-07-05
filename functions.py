@@ -7,10 +7,7 @@
 # Dieses Modul verwendet die Requests-Bibliothek (https://requests.readthedocs.io/).
 # Requests ist unter der Apache-Lizenz 2.0 (https://www.apache.org/licenses/LICENSE-2.0) lizenziert.
 
-import os
-import subprocess
-import requests
-import webbrowser
+import os, subprocess, requests, webbrowser
 import tkinter as tk
 from tkinter import messagebox
 from pypdf import PdfWriter, PdfReader
@@ -144,6 +141,8 @@ def versionsnummer_online_pruefen():
             return content
     except:
         gen_error("Fehler", "Die Updateprüfung ist fehlgeschlagen.")
+    finally: # Python3 S. 409 / Verwendet in U-Einheit 20230703 / Wer etwas öffnet, muss es auch schließen! ;-)
+        version.close()
 
 
 # Prüft ob die Onlineversionsnummer verfügbar ist und vergleicht die aktuelle Versionsnummer mit der Onlineversionsnummer. Wenn die Nummern unterschiedlich sind, wird ein Update gemeldet.
