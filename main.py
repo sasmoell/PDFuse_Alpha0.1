@@ -11,6 +11,7 @@ def menu_navigation(seite):
     seite01.grid()
     seite02.grid_remove()
     seite03.grid_remove()
+    seite_info.grid_remove()
 
     if seite == 1:
         seite01.grid(row=0)
@@ -18,6 +19,8 @@ def menu_navigation(seite):
         seite02.grid(row=1)
     elif seite == 3:
         seite03.grid(row=1)
+    elif seite == 4:
+        seite_info.grid(row=1)
 
 
 # Die Funktion ausgabeordner() anlegen überprüft, ob die Standard-Ausgabeordner vorhanden sind. Falls nicht wird mit der Funktion ordner_pruefen_und_erstellen() aus dem Modul functions.py die Ordner angelegt.
@@ -137,7 +140,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title(f"PDF 2Fuse & Split Alpha {fu.current_version}")
     root.config(pady=20, padx=20)
-    # root.geometry("400x400")
+    #root.geometry("550x580")
     root.resizable(False, False)
 
     # Menübar mit Funktionen
@@ -158,7 +161,7 @@ if __name__ == "__main__":
 
     hilfemenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Hilfe", menu=hilfemenu)
-    hilfemenu.add_command(label="Info")
+    hilfemenu.add_command(label="Info", command=lambda: menu_navigation(4))
     hilfemenu.add_command(label="Dokumentation", command=menu_doku)
     hilfemenu.add_separator()
     hilfemenu.add_command(label="Update-Check", command=update_menu_button)
@@ -247,7 +250,27 @@ if __name__ == "__main__":
     ausgabedir_button.grid(row=0, column=1)
     ausgabedir_button.configure(padding=(5, 10))
 
-    # B E E N D E N ########
+    # Seite Info
+
+    seite_info = ttk.Frame(root)
+    seite_info.grid_remove()
+
+    titel_info = ttk.Label(seite_info, text="Über PDFuser Alpha", font=("Arial", 16), padding=10)
+    titel_info.grid(row=0)
+
+    text_info01 = ttk.Label(seite_info, text=f"Version: {fu.current_version}", width=78, anchor="center")
+    text_info01.grid(row=1)
+
+    text_info01 = ttk.Label(seite_info, text="Author: Sascha Möller")
+    text_info01.grid(row=2)
+
+    text_info01 = ttk.Label(seite_info, text="Kontakt: sasmoell@t-online.de")
+    text_info01.grid(row=3)
+
+    text_info02 = ttk.Label(seite_info, text="Kommentar: Dieses Programm ist nicht für den produktiven Einsatz\ngedacht. Es ist ein Projekt im Rahmen einer Weiterbildung\nSoftware Developer IHK.", padding=10)
+    text_info02.grid(row=4)
+
+    # B E E N D E N #
 
     beenden_button = ttk.Button(root, text="Beenden", command=root.destroy, style='redBTN.TButton')
     beenden_button.grid(row=2, sticky=tk.E, pady=(15, 0))
