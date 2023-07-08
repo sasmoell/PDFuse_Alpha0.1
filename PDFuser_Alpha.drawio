@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-07-03T06:54:30.268Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="hbeWT8b7W7bEAZGmmtBj" version="21.5.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-08T07:18:51.494Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="KH8qfkIi8rqw6VtlWGQ8" version="21.6.1" type="github">
   <diagram name="Seite-1" id="z2froGWdfn9ouF2fLTrf">
-    <mxGraphModel dx="1728" dy="930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2074" dy="1116" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,74 +12,134 @@
         </mxCell>
         <mxCell id="eTS0UycD1pOltBMJqmKZ-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xmYlkgfEZDCuhrtj4b7d-3" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="483" y="180" as="targetPoint" />
+            <mxPoint x="430" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="xmYlkgfEZDCuhrtj4b7d-3" value="&lt;b&gt;&lt;u&gt;Pfadeingabe des Benutzers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Benutzer gibt den Pfad zum Ordner mit PDF-Dateien an, die kombiniert werden sollen. Die Funktion wird durch Klicken eines Button ausgelöst." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
           <mxGeometry x="109" y="120" width="236" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="H8KH_YZ80R001RCo76tN-3" target="qfPpVupYpmGQoLrrtDCL-27">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="H8KH_YZ80R001RCo76tN-3" target="qfPpVupYpmGQoLrrtDCL-27" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="H8KH_YZ80R001RCo76tN-3" value="&lt;u&gt;Dateien zusammenfassen&lt;/u&gt;&lt;br&gt;&lt;br&gt;Funktion: &lt;font color=&quot;#ff9933&quot;&gt;pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)&lt;/font&gt;&lt;br&gt;&lt;br&gt;- PdfWriter()-Instanz aus der Bibliothek pypdf erstellen&lt;br&gt;- &lt;font color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;: Alle Dateien aus dem angegebenen Ordner mit der Endung .pdf auflisten und in Variabel pdf_dateien speichern&lt;br&gt;- &lt;font color=&quot;#ff33ff&quot;&gt;IF-Verzweigung&lt;/font&gt;: Überprüfen ob Ausgabeordner vorhanden ist. Falls nicht, versuchen zu erstellen&lt;br&gt;- &lt;font color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;: Dateipfade von allen Dateien für die PdfWriter()-Instanz zusammensetzen und mit der .append-Funktion an die Instanz übergeben.&lt;br&gt;- Datei mit der .write-Funktion schreiben&lt;br&gt;- PdfWriter-Instanz schließen" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;" parent="1" vertex="1">
-          <mxGeometry x="367.75" y="690" width="520.5" height="200" as="geometry" />
+        <mxCell id="H8KH_YZ80R001RCo76tN-3" value="&lt;u&gt;Dateien zusammenfassen&lt;/u&gt;&lt;br&gt;&lt;br&gt;Funktion: &lt;font color=&quot;#ff9933&quot;&gt;pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)&lt;/font&gt;&lt;br&gt;&lt;br&gt;- PdfWriter()-Instanz aus der Bibliothek pypdf erstellen&lt;br&gt;- &lt;font color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;: Alle Dateien aus dem angegebenen Ordner mit der Endung .pdf auflisten und die Liste in Variabel pdf_dateien speichern&lt;br&gt;- &lt;font color=&quot;#ff33ff&quot;&gt;IF-Verzweigung&lt;/font&gt;: Überprüfen ob Ausgabeordner vorhanden ist. Falls nicht, versuchen zu erstellen&lt;br&gt;- &lt;font color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;: Dateipfade von allen Dateien für die PdfWriter()-Instanz zusammensetzen und mit der .append-Funktion an die Instanz übergeben.&lt;br&gt;- Datei mit der .write-Funktion schreiben&lt;br&gt;- PdfWriter-Instanz schließen" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="239.75" y="690" width="520.5" height="200" as="geometry" />
         </mxCell>
         <mxCell id="H8KH_YZ80R001RCo76tN-5" value="&lt;u&gt;Ausgabeordner öffnen&lt;br&gt;&lt;/u&gt;&lt;br&gt;Funktion: &lt;font color=&quot;#ff9933&quot;&gt;fuser_ausgabeordner_oeffnen_button()&lt;br&gt;&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Funktion aufrufen: &lt;/span&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt;ordner_pruefen_und_erstellen(&quot;output/mergeoutput&quot;)&lt;br&gt;&lt;/font&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;font style=&quot;background-color: initial;&quot;&gt;aus Modul functions.py aufrufen&lt;br&gt;&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;" parent="1" vertex="1">
-          <mxGeometry x="444.44" y="1550" width="367.13" height="120" as="geometry" />
+          <mxGeometry x="479.5" y="1920" width="367.13" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-4" target="qfPpVupYpmGQoLrrtDCL-10">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qfPpVupYpmGQoLrrtDCL-4" target="qfPpVupYpmGQoLrrtDCL-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-4" value="&lt;b&gt;&lt;u&gt;Eingabe des Benutzers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Benutzer gibt über einen Button die Anweisung den Vorgang zu starten.&lt;br&gt;Der Klick auf den Button löst eine&lt;br&gt;Funktion aus." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="95" y="440" width="236" height="120" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-4" value="&lt;b&gt;&lt;u&gt;Eingabe des Benutzers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Benutzer gibt über einen Button die Anweisung den Vorgang zu starten.&lt;br&gt;Der Klick auf den Button löst eine&lt;br&gt;Funktion aus." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="56" y="440" width="236" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-6" target="qfPpVupYpmGQoLrrtDCL-7">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qfPpVupYpmGQoLrrtDCL-6" target="qfPpVupYpmGQoLrrtDCL-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-6" value="&lt;b&gt;&lt;u&gt;Button ruft Funktion auf&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Funktion:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;fuser_durchsuchen_button()&lt;/font&gt;&lt;br&gt;- Öffnet einen Dateidialog&lt;br&gt;- Wenn Ordner ausgewählt wurde:&lt;br&gt;1. GUI-Label aktualisieren&lt;br&gt;2. Ordnerpfad als String zurückgeben" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-          <mxGeometry x="483" y="125" width="290" height="110" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-6" value="&lt;b&gt;&lt;u&gt;Button ruft Funktion auf&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Funktion:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;fuser_durchsuchen_button()&lt;/font&gt;&lt;br&gt;- Öffnet einen Dateidialog&lt;br&gt;- Wenn Ordner ausgewählt wurde:&lt;br&gt;1. GUI-Label aktualisieren&lt;br&gt;2. Ordnerpfad als String zurückgeben" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="432" y="125" width="290" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-7" target="qfPpVupYpmGQoLrrtDCL-4">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qfPpVupYpmGQoLrrtDCL-7" target="qfPpVupYpmGQoLrrtDCL-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-7" value="Ordnerpfad als Variabel verfügbar" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
-          <mxGeometry x="153" y="310" width="120" height="60" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-7" value="Ordnerpfad als Variabel verfügbar" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+          <mxGeometry x="114" y="310" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-10" target="qfPpVupYpmGQoLrrtDCL-12">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qfPpVupYpmGQoLrrtDCL-10" target="qfPpVupYpmGQoLrrtDCL-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-10" value="&lt;b&gt;&lt;u&gt;Button ruft Funktion auf&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Funktion:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;fusenow_button()&lt;/font&gt;&lt;br&gt;- Variabel: Dateiname setzen&lt;br&gt;- Funktion aufrufen:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;pdf_zusammenfassen()&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-          <mxGeometry x="479.5" y="450" width="297" height="100" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-10" value="&lt;b&gt;&lt;u&gt;Button ruft Funktion auf&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Funktion:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;fusenow_button()&lt;/font&gt;&lt;br&gt;- Variabel: Dateiname setzen&lt;br&gt;- Funktion aufrufen:&amp;nbsp;&lt;font color=&quot;#ff9933&quot;&gt;pdf_zusammenfassen()&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="351.5" y="450" width="297" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-12" target="H8KH_YZ80R001RCo76tN-3">
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qfPpVupYpmGQoLrrtDCL-12" target="H8KH_YZ80R001RCo76tN-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-12" value="Dateiname der neuen Datei als Variabel verfügbar" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
-          <mxGeometry x="568" y="590" width="120" height="60" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-12" value="Dateiname der neuen Datei als Variabel verfügbar" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+          <mxGeometry x="440" y="590" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-15" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="900" y="690" width="40" height="200" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-15" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="775" y="690" width="40" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-16" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Hauptfunktion (pypdf)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="950" y="775" width="110" height="30" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-16" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Hauptfunktion (pypdf)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="822" y="775" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-17" value="PDF-Dokument wurde erstellt." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="1460" width="120" height="60" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-17" value="PDF-Dokument wurde erstellt." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="1980" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-19" value="&lt;b&gt;&lt;u&gt;Aktion des Benutzers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Benutzer öffnet über einen Klick auf den Button den Ausgabeordner der neu erstellten Datei.&lt;br&gt;Klick löst eine Funktion aus." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="100" y="1555" width="235" height="110" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-19" value="&lt;b&gt;&lt;u&gt;Aktion des Benutzers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Benutzer öffnet über einen Klick auf den Button den Ausgabeordner der neu erstellten Datei.&lt;br&gt;Klick löst eine Funktion aus." style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="44" y="1920" width="235" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-22" value="&lt;u&gt;Ordner prüfen und erstellen&lt;/u&gt;&lt;font color=&quot;#ff9933&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Funktion: &lt;/span&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt;ordner_pruefen_und_erstellen(&quot;output/mergeoutput&quot;)&lt;br&gt;&lt;/font&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ffffff&quot;&gt;-&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt; &lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff33ff&quot;&gt;IF-Verzweigung&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ffffff&quot;&gt;: Prüfe ob Pfad &lt;b&gt;&lt;u&gt;nicht&lt;/u&gt;&lt;/b&gt; vorhanden ist. WENN WAHR: Versuche Ordner zu erstellen.&lt;br&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;font style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;font color=&quot;#ffffff&quot;&gt;-&lt;/font&gt;&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt; &lt;/font&gt;&lt;font color=&quot;#ff33ff&quot; style=&quot;background-color: initial;&quot;&gt;IF-Verzweigung&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;: Wenn Pfad/Ordner existiert rufe Funktion aufrufen&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(255, 255, 255); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;font color=&quot;#ff9933&quot;&gt;ordner_oeffnen(&quot;output&quot;)&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;TRY: Mit subprocess versuchen Explorer zu starten.&lt;br&gt;&lt;br&gt;Wenn Pfad/Ordner nicht existiert, gib einen Hinweis aus.&lt;br&gt;&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;" vertex="1" parent="1">
-          <mxGeometry x="940" y="1470" width="530" height="200" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-22" value="&lt;u&gt;Ordner prüfen und erstellen&lt;/u&gt;&lt;font color=&quot;#ff9933&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Funktion: &lt;/span&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt;ordner_pruefen_und_erstellen(&quot;output/mergeoutput&quot;)&lt;br&gt;&lt;/font&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ffffff&quot;&gt;-&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt; &lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff33ff&quot;&gt;IF-Verzweigung&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ffffff&quot;&gt;: Prüfe ob Pfad &lt;b&gt;&lt;u&gt;nicht&lt;/u&gt;&lt;/b&gt; vorhanden ist. WENN WAHR: Versuche Ordner zu erstellen.&lt;br&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;font style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;font color=&quot;#ffffff&quot;&gt;-&lt;/font&gt;&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot; color=&quot;#ff9933&quot;&gt; &lt;/font&gt;&lt;font color=&quot;#ff33ff&quot; style=&quot;background-color: initial;&quot;&gt;IF-Verzweigung&lt;/font&gt;&lt;font style=&quot;background-color: initial;&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;: Wenn Pfad/Ordner existiert rufe Funktion aufrufen&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(255, 255, 255); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;font color=&quot;#ff9933&quot;&gt;ordner_oeffnen(&quot;output&quot;)&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;TRY: Mit subprocess versuchen Explorer zu starten.&lt;br&gt;&lt;br&gt;Wenn Pfad/Ordner nicht existiert, gib einen Hinweis aus.&lt;br&gt;&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1830" width="440" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-25" value="Ausgabeordner&lt;br&gt;vorhanden?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="1220" width="110" height="90" as="geometry" />
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-25" target="qwH06JQZMY5gWyoqIxBz-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-27" value="PdfWriter()-Instanz als &quot;merger&quot; benannt/erstellt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="568" y="930" width="120" height="60" as="geometry" />
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-25" target="qwH06JQZMY5gWyoqIxBz-8">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qfPpVupYpmGQoLrrtDCL-29" value="-&amp;nbsp;&lt;font style=&quot;text-align: left;&quot; color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;&lt;span style=&quot;text-align: left;&quot;&gt;: Alle Dateien aus dem angegebenen Ordner mit der Endung .pdf auflisten und in Variabel pdf_dateien speichern&lt;/span&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-          <mxGeometry x="512" y="1020" width="232" height="80" as="geometry" />
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-25" value="Ausgabeordner&lt;br&gt;vorhanden?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="445" y="1337" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-27" target="qfPpVupYpmGQoLrrtDCL-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-27" value="Eine PdfWriter()-Instanz wird als Variabel &quot;merger&quot; deklariert und initialisiert." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="394.01" y="930" width="212" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qfPpVupYpmGQoLrrtDCL-29" target="qwH06JQZMY5gWyoqIxBz-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qfPpVupYpmGQoLrrtDCL-29" value="-&amp;nbsp;&lt;font style=&quot;text-align: left;&quot; color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt;&lt;span style=&quot;text-align: left;&quot;&gt;: Alle Dateien aus dem angegebenen Ordner mit der Endung PDF auflisten (List Comprehension) und in Variabel pdf_dateien speichern&lt;/span&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="381" y="1040" width="237.99" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qwH06JQZMY5gWyoqIxBz-2" target="qfPpVupYpmGQoLrrtDCL-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-2" value="- &lt;font color=&quot;#ff33ff&quot;&gt;IF-Verzweigung &lt;/font&gt;prüft, ob der Ausgabeordner &quot;output/mergeoutput&quot; vorhanden ist." style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="381" y="1226" width="237.99" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qwH06JQZMY5gWyoqIxBz-5" target="qwH06JQZMY5gWyoqIxBz-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-5" value="Versuch: Ordner erstellen mit os.makedirs(&quot;output/mergeoutput&quot;)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="699" y="1352" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-7" value="NEIN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="1352" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qwH06JQZMY5gWyoqIxBz-8" target="qwH06JQZMY5gWyoqIxBz-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-8" value="&lt;font color=&quot;#66cc00&quot;&gt;FOR-Schleife&lt;/font&gt; iteriert über alle Elemente der Liste pdf_dateien und fügt sie der Funktion merger.append() hinzu." style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="364.5" y="1477" width="271" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-9" value="JA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="492" y="1427" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="qwH06JQZMY5gWyoqIxBz-11" target="qwH06JQZMY5gWyoqIxBz-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qwH06JQZMY5gWyoqIxBz-11" target="qwH06JQZMY5gWyoqIxBz-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-11" value="Ausgabeordner konnte erstellt werden?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="774" y="1482" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-14" value="JA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="682" y="1497" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-15" value="Meldung: Ordner konnte nicht erstellt werden. Programm stoppt." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="952" y="1495" width="130" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-18" value="NEIN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="884" y="1495" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-19" value="Variabel pdf_dateien ist verfügbar" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="440.01" y="1140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qwH06JQZMY5gWyoqIxBz-20" value="Dateien die der Liste mit merger.append() hinzugefügt wurden, wurden zusammengefügt." style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="364.5" y="1657" width="271" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
