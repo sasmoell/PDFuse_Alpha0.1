@@ -1,3 +1,4 @@
+import os
 from os import path
 from tkinter import ttk, filedialog
 import tkinter as tk
@@ -38,10 +39,10 @@ def ausgabeordner_anlegen():
 # Die Funktion menu_doku() ist in der Menüleiste -> Hilfe -> Dokumentation gebunden. Sie ruft aus einem mitgelieferten Unterordner eine index.html mit der Dokumentation zum Programm auf.
 def menu_doku():
     try:
-        fu.hilfe_aufrufen("fuser\index.html")
+        os.startfile("fuser\index.html")
     except FileNotFoundError:
         try:
-            fu.hilfe_aufrufen("fuser/index.html")
+            os.startfile("fuser/index.html")
         except FileNotFoundError:
             fu.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
 

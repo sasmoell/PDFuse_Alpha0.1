@@ -59,9 +59,9 @@ def ordner_pruefen_und_erstellen(pfad):
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
 
 
-# Die Funktion ruft eine beliebige Datei auf. Im Fall des Projektes die Offline-Hilfe (HTML-Dokument).
-def hilfe_aufrufen(pfad):
-    os.startfile(pfad)
+# Die Funktion ruft eine Datei aus dem Dateisystem auf. Im Fall des Projektes die Offline-Hilfe (HTML-Dokument).
+# def hilfe_aufrufen(pfad):
+#     os.startfile(pfad)
 
 
 # # # # # # PDFuser Funktionen für PDFs zusammenfassen # # # # # #
