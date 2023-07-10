@@ -59,11 +59,6 @@ def ordner_pruefen_und_erstellen(pfad):
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
 
 
-# Die Funktion ruft eine Datei aus dem Dateisystem auf. Im Fall des Projektes die Offline-Hilfe (HTML-Dokument).
-# def hilfe_aufrufen(pfad):
-#     os.startfile(pfad)
-
-
 # # # # # # PDFuser Funktionen für PDFs zusammenfassen # # # # # #
 
 # Funktionen für PDFuser. Hier wird der PdfWriter aus pypdf genutzt. Da pypdf die grundlegendste Bibliothek des Projektes ist, wird hier etwas ausführlicher kommentiert.
