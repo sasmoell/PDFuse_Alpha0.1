@@ -1,5 +1,4 @@
 import os
-from os import path
 from tkinter import ttk, filedialog
 import tkinter as tk
 import functions as fu
@@ -7,7 +6,7 @@ import functions as fu
 
 # # # # # # Funktionen für die Menüleiste # # # # # #
 
-# datei_seitenwahl() ermöglicht die Navigation durch die GUI über die Menüleiste. Die ttkFrames werden entsprechend ein- und ausgeblendet.
+# Ermöglicht die Navigation über die Menüleiste. TtkFrames werden entsprechend ein- und ausgeblendet.
 def menu_navigation(seite):
     seite01.grid()
     seite02.grid_remove()
@@ -24,22 +23,10 @@ def menu_navigation(seite):
         seite_info.grid(row=1)
 
 
-# Die Funktion ausgabeordner() anlegen überprüft, ob die Standard-Ausgabeordner vorhanden sind. Falls nicht wird mit der Funktion ordner_pruefen_und_erstellen() aus dem Modul functions.py die Ordner angelegt.
-def ausgabeordner_anlegen():
-    if path.exists("output/mergeoutput") and fu.os.path.exists("output/splits"):
-        fu.gen_message_info("Info", "Die Ordner existieren bereits.")
-    else:
-        try:
-            fu.ordner_pruefen_und_erstellen("output/mergeoutput")
-            fu.ordner_pruefen_und_erstellen("output/splits")
-        except OSError:
-            fu.gen_error("Fehler", "Erstellen war nicht möglich.")
-
-
-# Die Funktion menu_doku() ist in der Menüleiste -> Hilfe -> Dokumentation gebunden. Sie ruft aus einem mitgelieferten Unterordner eine index.html mit der Dokumentation zum Programm auf.
+# Menüleiste -> Hilfe -> Dokumentation. Ruft eine lokale index.html auf.
 def menu_doku():
     try:
-        os.startfile("fuser\index.html")
+        os.startfile("fuser\\index.html")
     except FileNotFoundError:
         try:
             os.startfile("fuser/index.html")
@@ -47,18 +34,18 @@ def menu_doku():
             fu.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
 
 
-# Funktion für Menüleiste -> Hilfe -> Update-Check
-# Für die Funktion wird eine aktive Verbindung ins Internet benötigt. Es wird erst versucht die aktuelle Versionsnummer abzurufen. Anschließend wird versucht die aktuelle Versionsnummer mit der abgerufenen Nummer zu vergleichen
+# Menüleiste -> Hilfe -> Update-Check
+# Verbindung ins Internet wird benötigt. Es wird erst versucht die aktuelle Versionsnummer abzurufen. Versionsnummer wird mit der abgerufenen Nummer verglichen.
 
 def update_menu_button():
     try:
-        fu.versionsnummer_online_pruefen()
-    except:
+        fu.onlineversion_pruefen()
+    except ConnectionError:
         fu.gen_error("Prüfung fehlgeschlagen",
-                            "Die Überprüfung ist fehlgeschlagen. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.")
+                     "Die Überprüfung ist fehlgeschlagen. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.")
     try:
         fu.update_check()
-    except:
+    except FileNotFoundError:
         fu.gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
 
 
@@ -85,18 +72,8 @@ def fusenow_button():
     ausgabe_datei = "output/mergeoutput/new_file.pdf"
     try:
         fu.pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
-    except:
+    except FileNotFoundError:
         fu.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
-
-
-# Die Funktion fuser_ausgabeordner_oeffnen_button() ruft zunächst aus fuctions.py die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet. Der Benutzer muss so nicht lange in seinem Dateisystem suchen und kommt direkt zum Zielordner.
-# TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/3#issue-1774093733
-def fuser_ausgabeordner_oeffnen_button():
-    fu.ordner_pruefen_und_erstellen("output/mergeoutput")
-    if fu.os.path.exists("output/mergeoutput"):
-        fu.ordner_oeffnen("output")
-    elif not fu.os.path.exists("output/mergeoutput"):
-        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
 # Funktionen für den Splitter
@@ -122,17 +99,8 @@ def splitnow_button():
     split_output_ordner = "output/splits"
     try:
         fu.pdf_splitten(quelldatei, split_output_ordner)
-    except:
+    except FileNotFoundError:
         fu.gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
-
-
-# Die Funktion splitter_ausgabeordner_oeffnen_button() ruft zunächst aus fuctions.py die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet. Der Benutzer muss so nicht lange in seinem Dateisystem suchen und kommt direkt zum Zielordner.
-def splitter_ausgabeordner_oeffnen_button():
-    fu.ordner_pruefen_und_erstellen("output/splits")
-    if fu.os.path.exists("output/splits"):
-        fu.ordner_oeffnen("output")
-    elif not fu.os.path.exists("output/splits"):
-        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
 
 
 # # # # # # Tkinter Benutzeroberfläche # # # # # #
@@ -141,7 +109,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title(f"PDF 2Fuse & Split Alpha {fu.current_version}")
     root.config(pady=20, padx=20)
-    #root.geometry("550x580")
+    root.iconbitmap("fuser_icon.ico")
     root.resizable(False, False)
 
     # Menübar mit Funktionen
@@ -158,7 +126,7 @@ if __name__ == "__main__":
 
     optionenmenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Optionen", menu=optionenmenu)
-    optionenmenu.add_command(label="Ordner anlegen", command=ausgabeordner_anlegen)
+    optionenmenu.add_command(label="Ordner anlegen", command=lambda: fu.ausgabeordner_anlegen())
 
     hilfemenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Hilfe", menu=hilfemenu)
@@ -216,7 +184,8 @@ if __name__ == "__main__":
     fuse_button.grid(row=0, column=0)
     fuse_button.configure(text="Fuse NOW!", command=fusenow_button, padding=(5, 10), style='greenBTN.TButton')
 
-    ausgabedir_button = ttk.Button(seite02_btn, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
+    ausgabedir_button = ttk.Button(seite02_btn, text="Ausgabeordner öffnen",
+                                   command=fu.fuser_ausgabeordner_oeffnen_button)
     ausgabedir_button.grid(row=0, column=1)
     ausgabedir_button.configure(padding=(5, 10))
 
@@ -247,7 +216,8 @@ if __name__ == "__main__":
     split_button.grid(row=0, column=0)
     split_button.configure(text="Splitt NOW!", command=splitnow_button, padding=(5, 10), style='greenBTN.TButton')
 
-    ausgabedir_button = ttk.Button(seite03_btn, text="Ausgabeordner öffnen", command=fuser_ausgabeordner_oeffnen_button)
+    ausgabedir_button = ttk.Button(seite03_btn, text="Ausgabeordner öffnen",
+                                   command=fu.splitter_ausgabeordner_oeffnen_button)
     ausgabedir_button.grid(row=0, column=1)
     ausgabedir_button.configure(padding=(5, 10))
 
@@ -268,7 +238,9 @@ if __name__ == "__main__":
     text_info01 = ttk.Label(seite_info, text="Kontakt: sasmoell@t-online.de")
     text_info01.grid(row=3)
 
-    text_info02 = ttk.Label(seite_info, text="Kommentar: Dieses Programm ist nicht für den produktiven Einsatz\ngedacht. Es ist ein Projekt im Rahmen einer Weiterbildung\nSoftware Developer IHK.", padding=10)
+    text_info02 = ttk.Label(seite_info,
+                            text="Kommentar: Dieses Programm ist nicht für den produktiven Einsatz\ngedacht. Es ist ein Projekt im Rahmen einer Weiterbildung\nSoftware Developer IHK.",
+                            padding=10)
     text_info02.grid(row=4)
 
     # B E E N D E N #
