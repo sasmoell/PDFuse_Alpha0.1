@@ -54,6 +54,7 @@ def update_menu_button():
 # Die Funktion fuser_durchsuchen_button() setzt zunächst eingabe_ordner als globale Variabel:
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
 # Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String. Zudem wird das Label aktualisiert, um den gewählten Ordner auf der GUI auszugeben. Die print-Anweisung dient nur für den Entwickler zum debuggen.
+
 def fuser_durchsuchen_button():
     global eingabe_ordner
     try:
@@ -76,12 +77,12 @@ def fusenow_button():
         fu.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
 
 
-# Funktionen für den Splitter
+# # # # # # Funktionen für den Splitter PDF-Dateien splitten # # # # # #
 
 # Globale Variabel 'quelldatei' wird gesetzt.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
-
 # Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String. Zudem wird das Label aktualisiert, um den gewählten Ordner auf der GUI auszugeben. Die print-Anweisung dient nur für den Entwickler zum debuggen.
+
 def splitter_durchsuchen_button():
     global quelldatei
     try:

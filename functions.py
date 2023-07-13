@@ -7,18 +7,21 @@
 # Dieses Modul verwendet die Requests-Bibliothek (https://requests.readthedocs.io/).
 # Requests ist unter der Apache-Lizenz 2.0 (https://www.apache.org/licenses/LICENSE-2.0) lizenziert.
 
-import os, subprocess, requests, webbrowser
+import os
+import requests
+import subprocess
 import tkinter as tk
+import webbrowser
 from tkinter import messagebox
+
 from pypdf import PdfWriter, PdfReader
 
-current_version = "0.1.2306"  # Korrekte Angabe ist wichtig um auf Updates zu prüfen.
+current_version = "0.1.2306"  # Wichtig für die Updateprüfung.
 
 
 # # # # # # Allgemeine (Fehler)Meldungen # # # # # #
 
-# Generische Fehlermeldungen: Es werden im Programm diverse unter Umständen Fenster für Fragen, Fehler und Hinweise ausgegeben. Um den Umgang im Code damit etwas zu vereinfachen, wurden sie hier als Funktion definiert. Der Titel und die Nachricht können als String-Argument übergeben werden.
-
+# Titel und die Nachricht können als String-Argument übergeben werden.
 def gen_error(titel, message):
     tk.messagebox.showerror(title=titel, message=message)
 
@@ -35,18 +38,18 @@ def gen_yesno(titel, message):
 
 # # # # # # Allgemeine Funktionen # # # # # #
 
-# Mit der Bibliothek subprocess wird im Falle eines Windows-OS versucht der Explorer zu öffnen. Für den Fall, dass es nicht funktioniert wird eine macOS-Umgebung angenommen und der "open"-Befehl versucht auszuführen. Sollte auch das noch fehlschlagen, wird ein Linux-OS angenommen.
+# Explorer öffnen. Exceptions für unterschiedliche Betriebssysteme.
 def ordner_oeffnen(pfad):
     try:
-        subprocess.Popen(f'explorer {pfad}')
+        subprocess.Popen(f'explorer {pfad}')  # windows
     except FileNotFoundError:
         try:
-            subprocess.Popen(['open', pfad])
+            subprocess.Popen(['open', pfad])  # macOS
         except OSError:
-            subprocess.Popen(['xdg-open', pfad])
+            subprocess.Popen(['xdg-open', pfad])  # Linux
 
 
-# Die Funktion überprüft zunächst, ob ein Pfad (hier ein Argument, welches übergeben werden kann) vorhanden ist. Falls der Pfad nicht vorhanden ist, wird gefragt, ob er erstellt werden soll. Anschließend wird er je nach Auswahl erstellt oder nicht.
+# Existenzprüfung Dateipfad. Falls nicht vorhanden: Abfrage, ob Pfad erstellt werden soll.
 def ordner_pruefen_und_erstellen(pfad):
     if not os.path.exists(pfad):
         abfrage_box = tk.messagebox.askyesno(title="Frage",
@@ -59,7 +62,7 @@ def ordner_pruefen_und_erstellen(pfad):
                 gen_error("Fehler", f"Der Ordner {pfad} konnte nicht erstellt werden.")
 
 
-# Die Funktion überprüft, ob die Standard-Ausgabeordner vorhanden sind. Falls nicht, werden mit der Funktion ordner_pruefen_und_erstellen() die Ordner angelegt.
+# Existenzprüfung für den Standard-Ausgabeordner. Falls nicht vorhanden: ordner_pruefen_und_erstellen()
 def ausgabeordner_anlegen():
     if os.path.exists("output/mergeoutput") and os.path.exists("output/splits"):
         gen_message_info("Info", "Die Ordner existieren bereits.")
@@ -131,11 +134,10 @@ def pdf_splitten(quelldatei, split_output_ordner):
 update_pageurl = "https://mark42.de/fuser/alpha/"  # Online Ressource
 
 
-def update_seite_oeffnen():  # Wird aktuell nicht verwendet. Öffnet die Online-Dokumentation vom Programm.
+def update_seite_oeffnen():  # Öffnet Online-Ressource im Browser
     webbrowser.open(update_pageurl)
 
 
-# TODO Update-Prüfung: Die Versionsnummer könnte in den META-Daten der Onlinedokumentation eingesetzt werden.
 # Versucht die Datei release.txt online zu erreichen und die Versionsnummer zu ermitteln. Die Bibliothek Requests kommt zum Einsatz um den Status der Datei zu ermitteln.
 def onlineversion_pruefen():
     vers_url = "https://mark42.de/fuser/alpha/release.txt"
@@ -154,7 +156,7 @@ def onlineversion_pruefen():
         version.close()
 
 
-# Prüft ob die Onlineversionsnummer verfügbar ist und vergleicht die aktuelle Versionsnummer mit der Onlineversionsnummer. Wenn die Nummern unterschiedlich sind, wird ein Update gemeldet.
+# Prüft ob die Onlineversionsnummer verfügbar ist und vergleicht die aktuelle Versionsnummer mit der Onlineversionsnummer. Wenn die Nummern unterschiedlich sind, wird eine abweichende Version gemeldet.
 def update_check():
     versionsnummer = onlineversion_pruefen()
     if versionsnummer is None:
