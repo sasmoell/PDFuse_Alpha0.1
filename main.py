@@ -26,7 +26,7 @@ def menu_navigation(seite):
 # Menüleiste -> Hilfe -> Dokumentation. Ruft eine lokale index.html auf.
 def menu_doku():
     try:
-        os.startfile("fuser\\inde.html")
+        os.startfile("fuser\\index.html")
     except FileNotFoundError:
         try:
             os.startfile("fuser/index.html")
