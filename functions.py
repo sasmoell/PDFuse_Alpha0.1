@@ -13,17 +13,25 @@ import subprocess
 import tkinter as tk
 import webbrowser
 from tkinter import messagebox
-
 from pypdf import PdfWriter, PdfReader
+import logging
 
-current_version = "0.1.2306"  # Wichtig für die Updateprüfung.
+# Konfiguration der Log-Datei
+logging.basicConfig(filename="fehlerprotokoll.log", level=logging.DEBUG,
+                    format="%(asctime)s %(levelname)s: %(message)s")
+
+# Wichtig für die Update-Prüfung
+current_version = "0.1.2306"
 
 
 # # # # # # Allgemeine (Fehler)Meldungen # # # # # #
 
 # Titel und die Nachricht können als String-Argument übergeben werden.
+
+# Fehlermeldung mit Protokollierung
 def gen_error(titel, message):
     tk.messagebox.showerror(title=titel, message=message)
+    logging.debug("%s: %s", titel, message)
 
 
 # Allgemeiner Hinweis
