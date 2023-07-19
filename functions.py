@@ -17,7 +17,7 @@ from pypdf import PdfWriter, PdfReader
 import logging
 
 # Konfiguration der Log-Datei
-logging.basicConfig(filename="fehlerprotokoll.log", level=logging.DEBUG,
+logging.basicConfig(filename="protokoll.log", level=logging.DEBUG,
                     format="%(asctime)s %(levelname)s: %(message)s")
 
 # Wichtig für die Update-Prüfung
