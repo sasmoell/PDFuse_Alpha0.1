@@ -1,3 +1,9 @@
+######################################################################################
+### Author: Sascha Möller, 2023 ######################################################
+### Contact: sasmoell@t-online.de #### With great power comes great responsibility ###
+### PDFuse Alpha 0.1 #################################################################
+######################################################################################
+
 # Dieses Modul verwendet PyPDF (Version 3.11.0)
 # Copyright (c) 2006-2008, Mathieu Fenniak
 # Some contributions copyright (c) 2007, Ashish Kulkarni <kulkarni.ashish@gmail.com>
@@ -139,7 +145,7 @@ def pdf_splitten(quelldatei, split_output_ordner):
 
 # # # # # # Funktionen für Update-Prüfung # # # # # #
 
-update_pageurl = "https://mark42.de/fuser/alpha/"  # Online Ressource
+update_pageurl = "https://mark42.de/"  # Online Ressource
 
 
 def update_seite_oeffnen():  # Öffnet Online-Ressource im Browser

@@ -1,13 +1,27 @@
+######################################################################################
+### Author: Sascha Möller, 2023 ######################################################
+### Contact: sasmoell@t-online.de #### With great power comes great responsibility ###
+### PDFuse Alpha 0.1 #################################################################
+######################################################################################
+
 import os
 from tkinter import ttk, filedialog
 import tkinter as tk
 import functions as fu
 
-
-# # # # # # Funktionen für die Menüleiste # # # # # #
+##############################################################################################################
+#####-Funktionen für die Menüleiste-##########################################################################
+##############################################################################################################
 
 # Ermöglicht die Navigation über die Menüleiste. TtkFrames werden entsprechend ein- und ausgeblendet.
 def menu_navigation(seite):
+    """
+    Hier wird der Grid-Layout-Manager verwendet, um Tkinter-Inhalte ein- bzw. auszublenden. Zu Beginn ist
+    Seite 1 eingeblendet. Wenn eine andere Auswahl getroffen wird, werden alle anderen Inhalte mit grid_remove()
+    ausgeblendet.
+    :param seite:
+    :return:
+    """
     seite01.grid()
     seite02.grid_remove()
     seite03.grid_remove()
@@ -25,6 +39,12 @@ def menu_navigation(seite):
 
 # Menüleiste -> Hilfe -> Dokumentation. Ruft eine lokale index.html auf.
 def menu_doku():
+    """
+    Im Projektordner ist der Ordner 'fuser' enthalten. Darin befindet sich die Dokumentation für die Benutzer des
+    Programms. Die Dokumentation wurde mit HTML und CSS erstellt. Diese Funktion ruft die index.html auf und versucht
+    sie mit dem Standard-Programm (i.d.R. der Standard-Browser des Systems) für HTML zu öffnen.
+    :return:
+    """
     try:
         os.startfile("fuser\\index.html")
     except FileNotFoundError:
@@ -35,9 +55,14 @@ def menu_doku():
 
 
 # Menüleiste -> Hilfe -> Update-Check
-# Verbindung ins Internet wird benötigt. Es wird erst versucht die aktuelle Versionsnummer abzurufen. Versionsnummer wird mit der abgerufenen Nummer verglichen.
+# Verbindung ins Internet wird benötigt. Aktuelle Versionsnummer abrufen und vergleichen.
 
 def update_menu_button():
+    """
+    Diese Funktion überprüft, ob ein Update für das Programm online verfügbar ist. Dazu bedient es sich u.a. der
+    Funktionen onlineversion_pruefen() und update_check() aus dem functions-Modul.
+    :return:
+    """
     try:
         fu.onlineversion_pruefen()
     except ConnectionError:
@@ -49,13 +74,22 @@ def update_menu_button():
         fu.gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
 
 
-# # # # # # Funktionen für den Fuser PDF-Dateien zusammenfügen # # # # # #
+##############################################################################################################
+#####-Funktionen für PDF zusammenfügen (Fuser)-###############################################################
+##############################################################################################################
 
-# Die Funktion fuser_durchsuchen_button() setzt zunächst eingabe_ordner als globale Variabel:
+# Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
-# Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String. Zudem wird das Label aktualisiert, um den gewählten Ordner auf der GUI auszugeben. Die print-Anweisung dient nur für den Entwickler zum debuggen.
 
 def fuser_durchsuchen_button():
+    """
+    Die Funktion fuser_durchsuchen_button() ist dafür zuständig den Ordner auszuwählen, in dem sich die PDF-Dokumente
+    befinden. Der Ordnerpfad wird als Variable benötigt. Dazu setzt die Funktion zunächst eingabe_ordner als globale
+    Variabel. Anschließend wird versucht per filedialog nach dem Ordner gefragt und der Label-Text aktualisiert.
+    Sollte es zu einer Ausnahme kommen, wird ein FileNotFoundError ausgegeben. Die globale Variabel und deren Vermeidung
+    ist ein Thema auf GitHub https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299
+    :return:
+    """
     global eingabe_ordner
     try:
         eingabe_ordner = filedialog.askdirectory()
@@ -70,6 +104,12 @@ def fuser_durchsuchen_button():
 # Merger TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/4#issue-1774099062
 
 def fusenow_button():
+    """
+    Die Funktion ist mit dem Button FuseNOW verbunden. Es wird versucht die Funktion pdf_zusammenfassen aus dem Modul
+    functions.py aufzurufen. Damit das möglich ist, muss zuvor die Variabel ausgabe_datei initialisiert werden. Sollte
+    es zu einer Ausnahme kommen, wird ein FileNotFoundError ausgelöst.
+    :return:
+    """
     ausgabe_datei = "output/mergeoutput/new_file.pdf"
     try:
         fu.pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
@@ -77,13 +117,23 @@ def fusenow_button():
         fu.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
 
 
-# # # # # # Funktionen für den Splitter PDF-Dateien splitten # # # # # #
+##############################################################################################################
+#####-Funktionen für PDF teilen (Splitter)-###################################################################
+##############################################################################################################
 
 # Globale Variabel 'quelldatei' wird gesetzt.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
 # Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String. Zudem wird das Label aktualisiert, um den gewählten Ordner auf der GUI auszugeben. Die print-Anweisung dient nur für den Entwickler zum debuggen.
 
 def splitter_durchsuchen_button():
+    """
+    Die Funktion splitter_durchsuchen_button() ist dafür zuständig, die Datei auszuwählen, in dem sich das PDF-Dokument
+    befindet. Der Dateipfad wird als Variable benötigt. Dazu setzt die Funktion zunächst quelldatei als globale
+    Variabel. Anschließend wird versucht per filedialog nach der Datei gefragt und der Label-Text aktualisiert. Sollte
+    es zu einer Ausnahme kommen, wird ein FileNotFoundError ausgegeben. Die globale Variabel und deren Vermeidung ist
+    ein Thema auf GitHub https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299
+    :return:
+    """
     global quelldatei
     try:
         quelldatei = filedialog.askopenfilename()
@@ -97,6 +147,12 @@ def splitter_durchsuchen_button():
 
 # Die Funktion splitnow_button() erstellt eine Variabel mit einem Standard-Ordnerpfad und versucht aus der functions.py die Funktion pdf_splitten() aufzurufen
 def splitnow_button():
+    """
+    Der Standard-Ordner für die erzeugten Dateien wird gesetzt unter output/splits. Die Ordnerstruktur wird unter dem
+    Hauptverzeichnis des Programms erzeugt. Aus dem functions-Modul wird die Funktion pdf_splitten aufgerufen um die
+    einzelnen Seiten aus der Datei zu extrahieren.
+    :return:
+    """
     split_output_ordner = "output/splits"
     try:
         fu.pdf_splitten(quelldatei, split_output_ordner)
@@ -104,7 +160,9 @@ def splitnow_button():
         fu.gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
 
 
-# # # # # # Tkinter Benutzeroberfläche # # # # # #
+##############################################################################################################
+######-Tkinter Benutzeroberfläche (GUI)-######################################################################
+##############################################################################################################
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -120,7 +178,7 @@ if __name__ == "__main__":
 
     dateimenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Datei", menu=dateimenu)
-    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: menu_navigation(2))
+    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: menu_navigation(2)) # Die Verwendung von lambda ermöglicht die Verwendung des Parameters
     dateimenu.add_command(label="PDF teilen (Splitter)", command=lambda: menu_navigation(3))
     dateimenu.add_separator()
     dateimenu.add_command(label="Beenden", command=root.destroy)
