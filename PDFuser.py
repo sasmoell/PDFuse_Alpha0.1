@@ -5,6 +5,7 @@
 ######################################################################################
 
 import os
+import subprocess
 from tkinter import ttk, filedialog
 import tkinter as tk
 import functions as fu
@@ -51,7 +52,11 @@ def menu_doku():
         try:
             os.startfile("fuser/index.html")
         except FileNotFoundError:
-            fu.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
+            try:
+                dateipfad = "fuser/index.html"
+                subprocess.run(["xdg-open", dateipfad])
+            except FileNotFoundError:
+                fu.gen_error("Fehler", "Die Hilfe konnte nicht geöffnet werden.")
 
 
 # Menüleiste -> Hilfe -> Update-Check
