@@ -43,7 +43,7 @@ def menu_doku():
     """
     Im Projektordner ist der Ordner 'fuser' enthalten. Darin befindet sich die Dokumentation für die Benutzer des
     Programms. Die Dokumentation wurde mit HTML und CSS erstellt. Diese Funktion ruft die index.html auf und versucht
-    sie mit dem Standard-Programm (i.d.R. der Standard-Browser des Systems) für html zu öffnen.
+    sie mit dem Standard-Programm (i.d.R. der Standard-Browser des Systems) für HTML zu öffnen.
     :return:
     """
     try:
