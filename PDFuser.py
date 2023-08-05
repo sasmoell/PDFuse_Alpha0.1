@@ -113,8 +113,10 @@ def fusenow_button():
     ausgabe_datei = "output/mergeoutput/new_file.pdf"
     try:
         fu.pdf_zusammenfassen(eingabe_ordner, ausgabe_datei)
-    except FileNotFoundError:
-        fu.gen_error("Fehler", "Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben")
+    except FileNotFoundError as e:
+        fu.gen_error("Fehler", f"Pfad nicht gefunden. 'Ordner suchen' benutzen um den Pfad anzugeben. Fehler: {e}")
+    except NameError as e:
+        fu.gen_error("Fehler", f"Es wurde kein Pfad gefunden. Fehler: {e}")
 
 
 ##############################################################################################################
@@ -156,8 +158,10 @@ def splitnow_button():
     split_output_ordner = "output/splits"
     try:
         fu.pdf_splitten(quelldatei, split_output_ordner)
-    except FileNotFoundError:
-        fu.gen_error("Fehler", "Datei nicht gefunden. 'Datei suchen' benutzen um die Datei zu suchen.")
+    except FileNotFoundError as e:
+        fu.gen_error("Datei nicht gefunden", f"Hups! Die Datei wurde nicht gefunden. Wurde sie zwischenzeitlich verschoben? Bitte nutzen Sie den Button 'Datei suchen' um die Datei anzugeben.\n\nFehlermeldung: {e}")
+    except NameError as e:
+        fu.gen_error("Datei nicht gefunden", f"Bitte nutzen Sie den Button 'Datei suchen' um die Datei anzugeben.\n\nFehlermeldung: {e}")
 
 
 ##############################################################################################################
