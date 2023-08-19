@@ -107,7 +107,7 @@ def fuser_durchsuchen_button():
 
 # Die Funktion fusenow_button() erstellt den Pfad/Name der Ausgabedatei und versucht aus der functions.py die Funktion pdf_zusammenfassen() aufzurufen
 # Merger TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/4#issue-1774099062
-
+# Aufruf in Zeile 254
 def fusenow_button():
     """
     Die Funktion ist mit dem Button FuseNOW verbunden. Es wird versucht die Funktion pdf_zusammenfassen aus dem Modul
@@ -175,9 +175,10 @@ def splitnow_button():
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title(f"PDF 2Fuse & Split Alpha {fu.current_version}")
+    root.title(f"PDFuser (alpha) {fu.current_version}")
     root.config(pady=20, padx=20)
     root.iconbitmap("fuser_icon.ico")
+    root.geometry("500x550")
     root.resizable(False, False)
 
     # Menübar mit Funktionen
@@ -213,17 +214,17 @@ if __name__ == "__main__":
     seite01 = ttk.Frame(root)
     seite01.grid(row=0, pady=(0, 20))
 
-    titel01 = ttk.Label(seite01, text="PDF 2Fuse & Split", font=("Arial", 24))
+    titel01 = ttk.Label(seite01, text="PDFuser (alpha)", font=("Arial", 24))
     titel01.grid()
 
-    desc01_label = ttk.Label(seite01, text="Tool zum Zusammenfügen und Aufteilen von PDF-Dokumenten")
+    desc01_label = ttk.Label(seite01, text="Zusammenfügen und Aufteilen von PDF-Dokumenten")
     desc01_label.grid()
 
     # Icon
     icon = tk.PhotoImage(file="icon.gif")
     img_label = ttk.Label(seite01, image=icon)
-    img_label.place(width=80, relheight=1)
-    img_label.grid()
+    img_label.place(width=50, relheight=1)
+    img_label.grid(pady=(20, 5))
 
     # Seite 02
     seite02 = ttk.Frame(root)
@@ -307,13 +308,13 @@ if __name__ == "__main__":
     text_info01.grid(row=3)
 
     text_info02 = ttk.Label(seite_info,
-                            text="Kommentar: Dieses Programm ist nicht für den produktiven Einsatz\ngedacht. Es ist ein Projekt im Rahmen einer Weiterbildung\nSoftware Developer IHK.",
+                            text="Kommentar: Dieses Programm ist nicht für den produktiven Einsatz\ngedacht. Es ist ein Projekt im Rahmen einer Weiterbildung\nSoftware Developer IHK. \n \n With great power comes great responsibility \n (Ben Parker)",
                             padding=10)
     text_info02.grid(row=4)
 
     # B E E N D E N #
 
-    beenden_button = ttk.Button(root, text="Beenden", command=root.destroy, style='redBTN.TButton')
-    beenden_button.grid(row=2, sticky=tk.E, pady=(15, 0))
+    beenden_button = ttk.Button(root, text="Beenden", command=root.destroy)
+    beenden_button.grid(row=2, sticky=tk.S, pady=(20, 0))
 
     root.mainloop()

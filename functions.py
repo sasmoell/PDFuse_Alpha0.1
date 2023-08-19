@@ -36,17 +36,35 @@ current_version = "0.1.2306"
 
 # Fehlermeldung mit Protokollierung
 def gen_error(titel, message):
+    """
+    Generische Fehlermeldung mit Log-Funktion auf Debug-Level. Titel und Text werden als Parameter übergeben. Die Fehlermeldung erscheint als Tk.Messagebox.
+    :param titel:
+    :param message:
+    :return:
+    """
     tk.messagebox.showerror(title=titel, message=message)
     logging.debug("%s: %s", titel, message)
 
 
 # Allgemeiner Hinweis
 def gen_message_info(titel, message):
+    """
+    Generischer Hinweis. Titel und Text werden als Parameter übergeben. Die Meldung erscheint als Tk.Messagebox.
+    :param titel:
+    :param message:
+    :return:
+    """
     tk.messagebox.showinfo(title=titel, message=message)
 
 
 # Frage mit JA/NEIN Auswahl
 def gen_yesno(titel, message):
+    """
+    Generische Abfrage JA/NEIN. Titel und Text werden als Parameter übergeben. Die Abfrage erscheint als Tk.Messagebox.
+    :param titel:
+    :param message:
+    :return:
+    """
     tk.messagebox.askyesno(title=titel, message=message)
 
 
@@ -54,6 +72,11 @@ def gen_yesno(titel, message):
 
 # Explorer öffnen. Exceptions für unterschiedliche Betriebssysteme.
 def ordner_oeffnen(pfad):
+    """
+    Die Funktion verwendet subprocess, um über den File-Explorer einen Ordner aufzurufen. Auch wenn PDFuser auf macOS oder Linux noch nicht lauffähig ist, sind hier bereits subprocess-Routinen für die Betriebssysteme integriert.
+    :param pfad:
+    :return:
+    """
     try:
         subprocess.Popen(f'explorer {pfad}')  # windows
     except FileNotFoundError:
@@ -64,7 +87,13 @@ def ordner_oeffnen(pfad):
 
 
 # Existenzprüfung Dateipfad. Falls nicht vorhanden: Abfrage, ob Pfad erstellt werden soll.
+# TODO abfrage_box ersetzen durch gen_yesno?
 def ordner_pruefen_und_erstellen(pfad):
+    """
+    Hilfs-Funktion: Diese Funktion wird nur innerhalb einer anderen Funktion aufgerufen. Z.B. in der Funktion ausgabeordner_anlegen()
+    :param pfad:
+    :return:
+    """
     if not os.path.exists(pfad):
         abfrage_box = tk.messagebox.askyesno(title="Frage",
                                              message=f"Der Ordner {pfad} ist nicht vorhanden. Soll er erstellt werden?")
@@ -78,6 +107,10 @@ def ordner_pruefen_und_erstellen(pfad):
 
 # Existenzprüfung für den Standard-Ausgabeordner. Falls nicht vorhanden: ordner_pruefen_und_erstellen()
 def ausgabeordner_anlegen():
+    """
+    Die Standard Ausgabe-Ordner werden mit dieser Funktion angelegt. Es erfolgt eine Existenzprüfung. Wenn die Standard-Ausgabe-Ordner nicht vorhanden sind, wird jeweils die Hilfsfunktion ordner_pruefen_und_erstellen() aufgerufen.
+    :return:
+    """
     if os.path.exists("output/mergeoutput") and os.path.exists("output/splits"):
         gen_message_info("Info", "Die Ordner existieren bereits.")
     else:
