@@ -8,13 +8,16 @@ import os
 import subprocess
 from tkinter import ttk, filedialog
 import tkinter as tk
-import functions as fu
+import funktionen as fu
 
-##############################################################################################################
-#####-Funktionen für die Menüleiste-##########################################################################
-##############################################################################################################
+######################################################################################
+#####-Funktionen für die Menüleiste-##################################################
+######################################################################################
 
-# Ermöglicht die Navigation über die Menüleiste. TtkFrames werden entsprechend ein- und ausgeblendet.
+# Funktionen ausgliedern
+# TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/3#issue-1774093733
+
+# Navigation der Menüleiste.
 def menu_navigation(seite):
     """
     Hier wird der Grid-Layout-Manager verwendet, um Tkinter-Inhalte ein- bzw. auszublenden. Zu Beginn ist
@@ -79,9 +82,9 @@ def update_menu_button():
         fu.gen_error("Fehler", "Versionsnummer konnte nicht ermittelt werden.")
 
 
-##############################################################################################################
-#####-Funktionen für PDF zusammenfügen (Fuser)-###############################################################
-##############################################################################################################
+######################################################################################
+#####-Funktionen für PDF zusammenfügen (Fuser)-#######################################
+######################################################################################
 
 # Öffnet ein File-Dialog und speichert den ausgewählten Ordner als String.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
@@ -105,13 +108,13 @@ def fuser_durchsuchen_button():
         fu.gen_error("Fehler", "Ein unerwarteter Fehler ist aufgetreten.")
 
 
-# Die Funktion fusenow_button() erstellt den Pfad/Name der Ausgabedatei und versucht aus der functions.py die Funktion pdf_zusammenfassen() aufzurufen
+# Die Funktion fusenow_button() erstellt den Pfad/Name der Ausgabedatei und versucht aus der funktionen.py die Funktion pdf_zusammenfassen() aufzurufen
 # Merger TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/4#issue-1774099062
 # Aufruf in Zeile 254
 def fusenow_button():
     """
     Die Funktion ist mit dem Button FuseNOW verbunden. Es wird versucht die Funktion pdf_zusammenfassen aus dem Modul
-    functions.py aufzurufen. Damit das möglich ist, muss zuvor die Variabel ausgabe_datei initialisiert werden. Sollte
+    funktionen.py aufzurufen. Damit das möglich ist, muss zuvor die Variabel ausgabe_datei initialisiert werden. Sollte
     es zu einer Ausnahme kommen, wird ein FileNotFoundError ausgelöst.
     :return:
     """
@@ -124,9 +127,9 @@ def fusenow_button():
         fu.gen_error("Fehler", f"Es wurde kein Pfad gefunden. Fehler: {e}")
 
 
-##############################################################################################################
-#####-Funktionen für PDF teilen (Splitter)-###################################################################
-##############################################################################################################
+######################################################################################
+#####-Funktionen für PDF teilen (Splitter)-###########################################
+######################################################################################
 
 # Globale Variabel 'quelldatei' wird gesetzt.
 # TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/6#issue-1778433299 (Globale Variable vermeiden)
@@ -152,15 +155,15 @@ def splitter_durchsuchen_button():
         fu.gen_error("Fehler", "Datei nicht gefunden oder nicht lesbar.")
 
 
-# Die Funktion splitnow_button() erstellt eine Variabel mit einem Standard-Ordnerpfad und versucht aus der functions.py die Funktion pdf_splitten() aufzurufen
+# Die Funktion splitnow_button() erstellt eine Variabel mit einem Standard-Ordnerpfad und versucht aus der funktionen.py die Funktion pdf_splitten() aufzurufen
 def splitnow_button():
     """
-    Der Standard-Ordner für die erzeugten Dateien wird gesetzt unter output/splits. Die Ordnerstruktur wird unter dem
-    Hauptverzeichnis des Programms erzeugt. Aus dem functions-Modul wird die Funktion pdf_splitten aufgerufen um die
+    Der Standard-Ordner für die erzeugten Dateien wird gesetzt unter output/newFiles. Die Ordnerstruktur wird unter dem
+    Hauptverzeichnis des Programms erzeugt. Aus dem functions-Modul wird die Funktion pdf_splitten aufgerufen, um die
     einzelnen Seiten aus der Datei zu extrahieren.
     :return:
     """
-    split_output_ordner = "output/splits"
+    split_output_ordner = "output/newFiles"
     try:
         fu.pdf_splitten(quelldatei, split_output_ordner)
     except FileNotFoundError as e:
@@ -169,9 +172,33 @@ def splitnow_button():
         fu.gen_error("Datei nicht gefunden", f"Bitte nutzen Sie den Button 'Datei suchen' um die Datei anzugeben.\n\nFehlermeldung: {e}")
 
 
-##############################################################################################################
-######-Tkinter Benutzeroberfläche (GUI)-######################################################################
-##############################################################################################################
+def fuser_ausgabeordner_oeffnen_button():
+    """
+    Diese Funktion ruft zunächst die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet.
+    :return:
+    """
+    fu.ordner_pruefen_und_erstellen("output/mergeoutput")
+    if os.path.exists("output/mergeoutput"):
+        fu.ordner_oeffnen("output")
+    elif not os.path.exists("output/mergeoutput"):
+        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
+
+
+def splitter_ausgabeordner_oeffnen_button():
+    """
+    Prüft die Existenz des Standard-Ausgabeordners mit der Funktion ordner_pruefen_und_erstellen(). Öffnet den Standard-Ausgabeordner.
+    :return:
+    """
+    fu.ordner_pruefen_und_erstellen("output/newFiles")
+    if os.path.exists("output/newFiles"):
+        fu.ordner_oeffnen("output")
+    elif not os.path.exists("output/newFiles"):
+        fu.gen_message_info("Hinweis", "Kein Ordner vorhanden.")
+
+
+######################################################################################
+######-Tkinter Benutzeroberfläche (GUI)-##############################################
+######################################################################################
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -254,7 +281,7 @@ if __name__ == "__main__":
     fuse_button.configure(text="Fuse NOW!", command=fusenow_button, padding=(5, 10), style='greenBTN.TButton')
 
     ausgabedir_button = ttk.Button(seite02_btn, text="Ausgabeordner öffnen",
-                                   command=fu.fuser_ausgabeordner_oeffnen_button)
+                                   command=fuser_ausgabeordner_oeffnen_button)
     ausgabedir_button.grid(row=0, column=1)
     ausgabedir_button.configure(padding=(5, 10))
 
@@ -286,7 +313,7 @@ if __name__ == "__main__":
     split_button.configure(text="Splitt NOW!", command=splitnow_button, padding=(5, 10), style='greenBTN.TButton')
 
     ausgabedir_button = ttk.Button(seite03_btn, text="Ausgabeordner öffnen",
-                                   command=fu.splitter_ausgabeordner_oeffnen_button)
+                                   command=splitter_ausgabeordner_oeffnen_button)
     ausgabedir_button.grid(row=0, column=1)
     ausgabedir_button.configure(padding=(5, 10))
 

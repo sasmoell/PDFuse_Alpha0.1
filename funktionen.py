@@ -26,7 +26,7 @@ import logging
 logging.basicConfig(filename="protokoll.log", level=logging.DEBUG,
                     format="%(asctime)s %(levelname)s: %(message)s")
 
-# Wichtig für die Update-Prüfung
+# Wichtig für die Update-Prüfung; Wird verwendet in der Funktion update_check()
 current_version = "0.1.2306"
 
 
@@ -111,12 +111,12 @@ def ausgabeordner_anlegen():
     Die Standard Ausgabe-Ordner werden mit dieser Funktion angelegt. Es erfolgt eine Existenzprüfung. Wenn die Standard-Ausgabe-Ordner nicht vorhanden sind, wird jeweils die Hilfsfunktion ordner_pruefen_und_erstellen() aufgerufen.
     :return:
     """
-    if os.path.exists("output/mergeoutput") and os.path.exists("output/splits"):
+    if os.path.exists("output/mergeoutput") and os.path.exists("output/newFiles"):
         gen_message_info("Info", "Die Ordner existieren bereits.")
     else:
         try:
             ordner_pruefen_und_erstellen("output/mergeoutput")
-            ordner_pruefen_und_erstellen("output/splits")
+            ordner_pruefen_und_erstellen("output/newFiles")
         except OSError:
             gen_error("Fehler", "Erstellen war nicht möglich.")
 
@@ -125,6 +125,12 @@ def ausgabeordner_anlegen():
 
 # Funktionen für PDFuser. Hier wird der PdfWriter aus pypdf genutzt. Da pypdf die grundlegendste Bibliothek des Projektes ist, wird hier etwas ausführlicher kommentiert.
 def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
+    """
+    Diese Funktion nutzt aus der Bibliothek PyPDF die Funktion PdfWriter. Die Instanz wurde mit "merger" deklariert. Im ersten Schritt werden alle Dateien aus dem Eingabeordner in eine Liste gesammelt mit einer List-Comprehension. Im nächsten Schritt wird überprüft, ob der Standard-Ausgabeordner existiert. Falls nicht, wird versucht ihn zu erstellen. Die folgende erneute FOR-Schleife dient dazu, die Dateipfad zu erstellen, welche dem PdfWriter-Objekt (merger) hinzugefügt werden. Mit der write-Methode wird nun die Datei geschrieben, die alle PDF-Dokumente beinhaltet. Abschließend wird sichergestellt, dass alle Ressourcen mit der close-Methode wieder freigegeben werden und eine Bestätigungsmeldung erscheint.
+    :param eingabe_ordner:
+    :param ausgabe_datei:
+    :return:
+    """
     merger = PdfWriter()  # Erstellt ein PdfWriter-Objekt aus der Klasse zum Zusammenführen der PDFs.
 
     pdf_dateien = [d for d in os.listdir(eingabe_ordner) if
@@ -153,14 +159,21 @@ def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
 
 # Funktionen für PDFSplitter. Hier wird der PdfReader aus pypdf genutzt. Da pypdf die grundlegendste Bibliothek des Projektes ist, wird hier etwas ausführlicher kommentiert.
 
-split_output_ordner = "output/splits"
+# Ausgabeordner für gesplittete PDF-Dateien
+split_output_ordner = "output/newFiles"
 
 
 def pdf_splitten(quelldatei, split_output_ordner):
+    """
+    In dieser Funktion wird der PdfReader UND PdfWriter aus pypdf genutzt. Die Quelldatei wird im binären Lesemodus geöffnet und an den PdfReader übergeben. Mit einer FOR-Schleife und der page-Methode werden die einzelnen Seiten gelistet und an den PdfWriter übergeben. Da die Quelldatei im Lesemodus 'rb' geöffnet wird, ist an dieser Stelle sichergestellt, dass die Ursprungsdatei nicht verändert wird. Erst die Liste der einzelnen Seiten wird im Schreibmodus verwendet.
+    :param quelldatei:
+    :param split_output_ordner:
+    :return:
+    """
     with open(quelldatei, 'rb') as file:  # öffnen der quelldatei im binären Modus 'rb'
         pdf = PdfReader(file)  # Erstellt ein PdfReader-Objekt aus der Klasse und übergibt die quelldatei (as file)
 
-        ordner_pruefen_und_erstellen("output/splits")
+        ordner_pruefen_und_erstellen("output/newFiles")
 
         # PDF-Datei in einzelne Seiten aufteilen
         for page_number, page in enumerate(
@@ -176,18 +189,25 @@ def pdf_splitten(quelldatei, split_output_ordner):
         gen_message_info("Hinweis", f"Dateien im Ordner {split_output_ordner} erstellt.")
 
 
-# # # # # # Funktionen für Update-Prüfung # # # # # #
+# URL der Onlinedokumentation
+update_pageurl = "https://mark42.de/"
 
-update_pageurl = "https://mark42.de/"  # Online Ressource
 
-
-def update_seite_oeffnen():  # Öffnet Online-Ressource im Browser
+def update_seite_oeffnen():
+    """
+    Öffnet die Onlinedokumentation im Standard-Browser
+    :return:
+    """
     webbrowser.open(update_pageurl)
 
 
-# Versucht die Datei release.txt online zu erreichen und die Versionsnummer zu ermitteln. Die Bibliothek Requests kommt zum Einsatz um den Status der Datei zu ermitteln.
+# Hilfsfunktion: Ermitteln der Online-Versionsnummer
 def onlineversion_pruefen():
-    vers_url = "https://mark42.de/fuser/alpha/release.txt"
+    """
+    Die Variable vers_url beinhaltet URL zu der Textdatei release.dat. Die Datei beinhaltet ausschließlich eine Versionsnummer, welche mit der aktuell verwendeten Version verglichen wird. Diese Funktion fragt den Status der Datei ab, um die Erreichbarkeit abzufragen. Wenn der Status 200 lautet, wird der Inhalt (Versionsnummer) zurückgegeben. Lautet der Status !=200, wird eine Fehlermeldung ausgegeben. Unabhängig vom Erfolg, wird die Datei am Ende der Funktion geschlossen.
+    :return: Versionsnummer (content)
+    """
+    vers_url = "https://mark42.de/fuser/alpha/release.dat"
     version = requests.get(vers_url)
     try:
         if version.status_code == 200:
@@ -199,12 +219,16 @@ def onlineversion_pruefen():
             return content
     except FileNotFoundError:
         gen_error("Fehler", "Die Updateprüfung ist fehlgeschlagen.")
-    finally:  # Python3 S. 409 / Verwendet in U-Einheit 20230703 / Wer etwas öffnet, muss es auch schließen! ;-)
+    finally:
         version.close()
 
 
-# Prüft ob die Onlineversionsnummer verfügbar ist und vergleicht die aktuelle Versionsnummer mit der Onlineversionsnummer. Wenn die Nummern unterschiedlich sind, wird eine abweichende Version gemeldet.
+# Vergleich die Online-Versionsnummer mit der lokalen Versionsnummer
 def update_check():
+    """
+    Die Hilfsfunktion onlineversion_pruefen() wird ausgeführt. Die ermittelte Online-Versionsnummer wird mit der lokalen Versionsnummer verglichen. Je nach Ergebnis, wird eine Update-Meldung angezeigt.
+    :return:
+    """
     versionsnummer = onlineversion_pruefen()
     if versionsnummer is None:
         gen_error("Fehler", "Versionsnummer konnte nicht geprüft werden.")
@@ -216,24 +240,3 @@ def update_check():
     else:
         gen_message_info("Version aktuell", "Sie arbeiten bereits mit der aktuellsten Version.")
         print("Kein Update vorhanden")
-
-
-# Ausgelagerte Funktionen
-
-# Die Funktion fuser_ausgabeordner_oeffnen_button() ruft zunächst die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet.
-# TODO: https://github.com/sasmoell/PDFuse_Alpha0.1/issues/3#issue-1774093733
-def fuser_ausgabeordner_oeffnen_button():
-    ordner_pruefen_und_erstellen("output/mergeoutput")
-    if os.path.exists("output/mergeoutput"):
-        ordner_oeffnen("output")
-    elif not os.path.exists("output/mergeoutput"):
-        gen_message_info("Hinweis", "Kein Ordner vorhanden.")
-
-
-# Die Funktion splitter_ausgabeordner_oeffnen_button() ruft zunächst aus fuctions.py die Funktion ordner_pruefen_und_erstellen() auf, um zu prüfen, ob die Standardordner vorhanden sind. Wenn die Standardordner vorhanden sind, wird der Pfad geöffnet. Der Benutzer muss so nicht lange in seinem Dateisystem suchen und kommt direkt zum Zielordner.
-def splitter_ausgabeordner_oeffnen_button():
-    ordner_pruefen_und_erstellen("output/splits")
-    if os.path.exists("output/splits"):
-        ordner_oeffnen("output")
-    elif not os.path.exists("output/splits"):
-        gen_message_info("Hinweis", "Kein Ordner vorhanden.")
