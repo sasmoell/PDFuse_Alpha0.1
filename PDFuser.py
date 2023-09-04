@@ -215,7 +215,7 @@ if __name__ == "__main__":
 
     dateimenu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Datei", menu=dateimenu)
-    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: menu_navigation(2)) # Die Verwendung von lambda ermöglicht die Verwendung des Parameters
+    dateimenu.add_command(label="PDF zusammenfügen (Fuser)", command=lambda: menu_navigation(2)) # Die Verwendung von lambda ermöglicht die Übergabe von Argumenten in der Funktion
     dateimenu.add_command(label="PDF teilen (Splitter)", command=lambda: menu_navigation(3))
     dateimenu.add_separator()
     dateimenu.add_command(label="Beenden", command=root.destroy)

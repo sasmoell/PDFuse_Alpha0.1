@@ -27,7 +27,7 @@ logging.basicConfig(filename="protokoll.log", level=logging.DEBUG,
                     format="%(asctime)s %(levelname)s: %(message)s")
 
 # Wichtig für die Update-Prüfung; Wird verwendet in der Funktion update_check()
-current_version = "0.1.2306"
+current_version = "0.1.2306" # Versionierung: Hauptversion.Nebenversion.Revision
 
 
 # # # # # # Allgemeine (Fehler)Meldungen # # # # # #
@@ -135,7 +135,7 @@ def pdf_zusammenfassen(eingabe_ordner, ausgabe_datei):
 
     pdf_dateien = [d for d in os.listdir(eingabe_ordner) if
                    d.endswith(
-                       ".pdf")]  # Erstellt eine Liste der PDF-Dateien im Eingabeordner mit einer List Comprehension. Die For-Schleife wird direkt in der Liste ausgeführt.
+                       ".pdf")]  # Erstellt eine Liste der PDF-Dateien im Eingabeordner mit einer List Comprehension. Die For-Schleife wird direkt innerhalb der Liste ausgeführt.
 
     if not os.path.exists("output/mergeoutput"):  # Überprüft, ob der Ausgabeordner existiert.
         try:
